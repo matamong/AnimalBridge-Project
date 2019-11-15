@@ -1,0 +1,57 @@
+
+
+
+-----*-----*---- << Maven Directory >>----*-----*-----*
+
+
+	workspce/[AnimalBridge]
+		
+		├ src
+		
+		│   ├ main
+		
+		│   │   ├─ java
+		
+		│   │   ├─ resources
+		
+		│   │   └─ webapp
+		
+		│   │                ├── static
+		
+		│   │                └── WEB-INF
+		
+		│   └ test
+		
+		│         ├─ java
+		
+		│         └─ resources
+		
+		│
+		
+		├ target 
+		
+		└ pom.xml
+
+
+
+src/main/java : Java 소스 파일들 
+
+src/test/java : Java Test 파일
+
+resources : properties나 기타 xml 설정파일을 둔다. (ex. datapase.properties, log4j.properties, log4j.xml etc.)
+
+webapp : Web application 설정 파일 
+
+static : css, img, js 파일등
+
+WEB-INF : 웹 어플리케이션 정보 (context.xml, decorators.xml, infrastructure.xml, sitemesh.xml, web.xml 등) 및 jsp 파일을 둔다.
+
+target : 빌드 결과 출력 (.war)
+
+pom.xml : Maven 관련 파일 설정
+
+
+
+-----*-----*-----*-----*-----*-----*-----*-----*-----*
+
+

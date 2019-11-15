@@ -1,0 +1,4 @@
+1. tomcat 종료
+2. 프로젝트 오른쪽 클릭 - Maven - update project
+3. Servers 서버삭제
+4. Project - Clean
