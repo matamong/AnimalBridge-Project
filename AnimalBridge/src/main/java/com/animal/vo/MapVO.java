@@ -8,6 +8,8 @@ public class MapVO {
 	private String title;
 	private String map_address;
 	
+	public MapVO() {}
+	
 	public MapVO(String email, int x, int y, String special, String title, String map_address) {
 		this.email = email;
 		this.x = x;
