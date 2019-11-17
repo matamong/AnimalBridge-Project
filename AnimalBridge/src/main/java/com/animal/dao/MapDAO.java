@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.animal.dbConnection.DBCP;
 import com.animal.vo.MapVO;
 
@@ -64,5 +67,45 @@ public class MapDAO {
 			}
 		}
 		return list;
+	}
+	
+	public String mapSelectAllJson() {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		JSONArray jsonArr = new JSONArray();
+
+		String sql = "SELECT * FROM MAP";
+
+		try {
+			conn = DBCP.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				JSONObject jsonObj = new JSONObject();
+				jsonObj.put("email",(rs.getString("email")));
+				jsonObj.put("x",(rs.getInt("x")));
+				jsonObj.put("y",(rs.getInt("y")));
+				jsonObj.put("title",(rs.getString("title")));
+				jsonObj.put("special",(rs.getString("special")));
+				jsonObj.put("map_address",(rs.getString("map_address")));
+				jsonArr.put(jsonObj);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (rs != null)
+					rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		String json = jsonArr.toString();
+		return json;
 	}
 }

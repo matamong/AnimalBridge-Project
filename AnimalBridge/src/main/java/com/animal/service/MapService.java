@@ -21,7 +21,11 @@ public class MapService {
 		return mapService;
 	}
 	
-	public ArrayList<MapVO> ShowAll(){
+	public ArrayList<MapVO> getAll(){
 		return mapDao.mapSelectAll();
+	}
+	
+	public String getJsonAll() {
+		return mapDao.mapSelectAllJson();
 	}
 }
