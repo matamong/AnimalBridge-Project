@@ -9,16 +9,49 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				height: 50vh;
+			
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.wrap {
+				width: 300px;
+				
+				border: 2px solid black;
+				border-radius: 20px;
+				
+				padding: 30px;
+			}
+		</style>
 	</head>
 
 	<body>
-		<h3>로그인</h3>
-		<form action="memberLogIn.do" method="POST">
-			Nick Name : <input type="text" name="nickName"/><br/>
-			Password : <input type="password" name="password"/><br/>
-			<input type="submit" value="로그인"/>
-		</form>
-		
-		
+		<div class="wrap">
+			<h3>로그인</h3>
+			
+			<form action="memberLogIn.do" method="POST">
+				<div>
+					Nick Name : 
+					<input type="text" name="nickName"/>
+				</div>
+				
+				<div>
+					Password : 
+					<input type="password" name="password"/>
+				</div>
+				<input type="submit" value="로그인"/>
+			</form>
+		</div>
 	</body>
 </html>
