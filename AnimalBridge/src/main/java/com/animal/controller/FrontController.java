@@ -33,6 +33,7 @@ public class FrontController extends HttpServlet {
 		String path = uri.substring(contextPath.length());
 		
 		SubController subController = controllers.get(path);
+		System.out.println(path);
 		subController.execute(req, resp);
 	}
 }
