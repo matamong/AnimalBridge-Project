@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/AnimalBridge/view/mapView/css/map.css">
     <title>Animal Bridge Map</title>
 </head>
 
@@ -21,10 +22,18 @@
         특징 <input type="text" name="title" id="title"><br>
         <input type="submit">
     </form>
+	<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div class="hAddr">
+        <span class="title">지도중심기준 행정동 주소정보</span>
+        <span id="centerAddr"></span>
+    </div>
+</div>
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77&libraries=services,clusterer,drawing"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77"></script>
+        
 
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -34,7 +43,10 @@
             };
 
         var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
+        
+    	 // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+		
         var json = ${ requestScope.json };
         console.log("받은 json : " + json);
         console.log("받은 title : " + json[0].title);
@@ -79,36 +91,91 @@
                 image: markerImage // 마커 이미지 
             });
         }
-
+		
+        // Click Marker
         var imageSrc2 = '/AnimalBridge/view/mapView/mark2.png';
         var imageSize2 = new kakao.maps.Size(64, 69),
             markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize2); // 마커 이미지를 생성합니다    
 
+            
+            // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+            searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+            
         var marker2 = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
             image: markerImage2 // 마커 이미지 
-        });
+        }), infowindow = new kakao.maps.InfoWindow({zindex:1});;
         //지도에 클릭 이벤트를 등록합니다
+        
+        
+        // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+		searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+        
+        
         //지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
         kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+        	
+        	searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+                    detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+                    
+                    var content = '<div class="bAddr">' +
+                                    '<span class="title">법정동 주소정보</span>' + 
+                                    detailAddr + 
+                                '</div>';
+					           
+                     // 클릭한 위도, 경도 정보를 가져옵니다 
+                     var latlng = mouseEvent.latLng;
+                    // 마커를 클릭한 위치에 표시합니다 
+                    marker2.setPosition(mouseEvent.latLng);
+                    
+                 // 마커 위치를 클릭한 위치로 옮깁니다
+                    marker2.setPosition(latlng);
+                    
+                    // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+                    infowindow.setContent(content);
+                    infowindow.open(map, marker2);
 
-            // 클릭한 위도, 경도 정보를 가져옵니다 
-            var latlng = mouseEvent.latLng;
 
-            // 마커 위치를 클릭한 위치로 옮깁니다
-            marker2.setPosition(latlng);
+                    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+                    message += '경도는 ' + latlng.getLng() + ' 입니다';
 
-            var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-            message += '경도는 ' + latlng.getLng() + ' 입니다';
-
-            var x = document.getElementById("x");
-            x.value = latlng.getLng();
-            var y = document.getElementById("y");
-            y.value = latlng.getLat();
-            var resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = message;
-
+                    var x = document.getElementById("x");
+                    x.value = latlng.getLng();
+                    var y = document.getElementById("y");
+                    y.value = latlng.getLat();
+                    var resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = message;
+                }   
+            });
         });
+        
+        
+        function searchAddrFromCoords(coords, callback) {
+            // 좌표로 행정동 주소 정보를 요청합니다
+            geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+        }
+
+        function searchDetailAddrFromCoords(coords, callback) {
+            // 좌표로 법정동 상세 주소 정보를 요청합니다
+            geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+        }
+
+        // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+        function displayCenterInfo(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                var infoDiv = document.getElementById('centerAddr');
+
+                for(var i = 0; i < result.length; i++) {
+                    // 행정동의 region_type 값은 'H' 이므로
+                    if (result[i].region_type === 'H') {
+                        infoDiv.innerHTML = result[i].address_name;
+                        break;
+                    }
+                }
+            }    
+        }
     </script>
 </body>
 
