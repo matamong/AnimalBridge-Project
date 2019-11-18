@@ -47,8 +47,8 @@ public class MapDAO {
 			while (rs.next()) {
 				MapVO mapVO = new MapVO();
 				mapVO.setEmail(rs.getString("email"));
-				mapVO.setX(rs.getInt("x"));
-				mapVO.setY(rs.getInt("y"));
+				mapVO.setX(rs.getString("x"));
+				mapVO.setY(rs.getString("y"));
 				mapVO.setTitle(rs.getString("title"));
 				mapVO.setSpecial(rs.getString("special"));
 				mapVO.setMap_address(rs.getString("map_address"));
@@ -58,10 +58,12 @@ public class MapDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstmt != null)
-					pstmt.close();
 				if (rs != null)
 					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -86,8 +88,8 @@ public class MapDAO {
 			while (rs.next()) {
 				JSONObject jsonObj = new JSONObject();
 				jsonObj.put("email",(rs.getString("email")));
-				jsonObj.put("x",(rs.getInt("x")));
-				jsonObj.put("y",(rs.getInt("y")));
+				jsonObj.put("x",(rs.getString("x")));
+				jsonObj.put("y",(rs.getString("y")));
 				jsonObj.put("title",(rs.getString("title")));
 				jsonObj.put("special",(rs.getString("special")));
 				jsonObj.put("map_address",(rs.getString("map_address")));
@@ -97,10 +99,12 @@ public class MapDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstmt != null)
-					pstmt.close();
 				if (rs != null)
 					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

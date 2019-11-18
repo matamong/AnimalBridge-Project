@@ -2,15 +2,15 @@ package com.animal.vo;
 
 public class MapVO {
 	private String email;
-	private int x; 
-	private int y ;
+	private String x; 
+	private String y ;
 	private String special;
 	private String title;
 	private String map_address;
 	
 	public MapVO() {}
 	
-	public MapVO(String email, int x, int y, String special, String title, String map_address) {
+	public MapVO(String email, String x, String y, String special, String title, String map_address) {
 		this.email = email;
 		this.x = x;
 		this.y = y;
@@ -28,19 +28,19 @@ public class MapVO {
 		this.email = email;
 	}
 
-	public int getX() {
+	public String getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(String x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public String getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(String y) {
 		this.y = y;
 	}
 

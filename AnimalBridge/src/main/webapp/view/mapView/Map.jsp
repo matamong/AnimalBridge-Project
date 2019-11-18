@@ -62,7 +62,7 @@
         
 
         // 마커 이미지의 이미지 주소입니다
-        var imageSrc = 'mark1.png';
+        var imageSrc = '/AnimalBridge/view/mapView/mark1.png';
 
         for (var i = 0; i < positions.length; i++) {
 
@@ -80,7 +80,7 @@
             });
         }
 
-        var imageSrc2 = 'mark2.png';
+        var imageSrc2 = '/AnimalBridge/view/mapView/mark2.png';
         var imageSize2 = new kakao.maps.Size(64, 69),
             markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize2); // 마커 이미지를 생성합니다    
 
