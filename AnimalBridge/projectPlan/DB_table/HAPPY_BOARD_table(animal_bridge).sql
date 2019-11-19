@@ -16,9 +16,7 @@ CREATE TABLE HAPPY_BOARD(
     HIT         NUMBER(8)       DEFAULT 0,
     IMG_1       VARCHAR2(100),
     IMG_2       VARCHAR2(100),
-    IMG_3       VARCHAR2(100),
-    IMG_4       VARCHAR2(100),
-    IMG_5       VARCHAR2(100)
+    IMG_3       VARCHAR2(100)
 );
 
 DESC HAPPY_BOARD;
