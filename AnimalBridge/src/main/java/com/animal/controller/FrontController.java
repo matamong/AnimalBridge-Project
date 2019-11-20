@@ -35,7 +35,6 @@ public class FrontController extends HttpServlet {
 		System.out.println(path);
 		
 		SubController subController = controllers.get(path);
-		System.out.println(path);
 		subController.execute(req, resp);
 	}
 }

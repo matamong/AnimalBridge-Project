@@ -2,6 +2,7 @@ package com.animal.service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.animal.dao.HappyBoardDAO;
 import com.animal.dao.MemberDAO;
@@ -60,6 +61,14 @@ public class Service {
 	
 	public HappyBoardVO getHappyBoardViewByIdx(int idx) {
 		return happyBoardDAO.getHappyBoardViewByIdx(idx);
+	}
+	
+	public int getHappyBoardViewTotalCnt() {
+		return happyBoardDAO.getHappyBoardViewTotalCnt();
+	}
+	
+	public List<HappyBoardVO> getHappyBoardViewList(int requestPage, int pageDivDegree) {
+		return happyBoardDAO.getHappyBoardViewList(requestPage, pageDivDegree);
 	}
 	
 	

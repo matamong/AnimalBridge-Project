@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.animal.dbConnection.DBCP;
 import com.animal.vo.HappyBoardVO;
@@ -135,5 +137,69 @@ public class HappyBoardDAO {
 		}
 		
 		return resultVO;
+	}
+	
+	
+	public int getHappyBoardViewTotalCnt() {
+		int result = 0;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM HAPPY_BOARD";
+			
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("HappyBoardDAO - getHappyBoardViewTotalCnt() 에러 : " + e.getStackTrace());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
+		return result;
+	}
+	
+	
+	public List<HappyBoardVO> getHappyBoardViewList(int requestPage, int pageDivDegree) {
+		List<HappyBoardVO> result = new ArrayList<HappyBoardVO>();
+		
+		try {
+			String sql = "SELECT * FROM HAPPY_BOARD ORDER BY IDX LIMIT ? OFFSET ?";
+			
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, pageDivDegree);
+			preStatement.setInt(2, requestPage * pageDivDegree);
+			resultSet = preStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				HappyBoardVO vo = new HappyBoardVO();
+				vo.setIdx(resultSet.getInt("IDX"));
+				vo.setNickName(resultSet.getString("NICK_NAME"));
+				vo.setTitle(resultSet.getString("TITLE"));
+				vo.setContent(resultSet.getString("CONTENT"));
+				vo.setRegDate(resultSet.getDate("REG_DATE").toString());
+				vo.setWatch(resultSet.getInt("WATCH"));
+				vo.setHit(resultSet.getInt("HIT"));
+				vo.setImg_1(resultSet.getString("IMG_1"));
+				vo.setImg_2(resultSet.getString("IMG_2"));
+				vo.setImg_3(resultSet.getString("IMG_3"));
+				
+				result.add(vo);
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("HappyBoardDAO - getHappyBoardViewList() 에러 : " + e.getStackTrace());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
+		return result;
 	}
 }

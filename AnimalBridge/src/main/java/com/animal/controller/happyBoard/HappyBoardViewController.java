@@ -1,5 +1,8 @@
 package com.animal.controller.happyBoard;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +13,8 @@ import com.animal.vo.HappyBoardVO;
 
 public class HappyBoardViewController implements SubController {
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+	public void execute(HttpServletRequest req, HttpServletResponse resp) 
+					throws ServletException, IOException {
 		String path = "/view/happyBoardView/happyBoardView.jsp";
 		String requestIdx = req.getParameter("happyBoardViewIdx");
 		
