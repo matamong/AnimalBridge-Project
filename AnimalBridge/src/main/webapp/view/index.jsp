@@ -211,7 +211,7 @@
     </div>
     <div id="container">
         <div id="wrap2">
-            <div class="person" id="person1">
+            <div class="person" id="person1" onclick="location.href='/AnimalBridge/view/happyBoardView/happyBoard.jsp'">
                     <div class="parson_menuO">저 행복해요</div>
                     <div class="person_img"><img src="/AnimalBridge/view/mainView/showIcon.png"></div>
                     <div class="person_menuI">저 행복해요</div>
