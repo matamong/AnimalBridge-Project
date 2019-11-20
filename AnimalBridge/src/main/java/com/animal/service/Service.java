@@ -3,7 +3,7 @@ package com.animal.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import com.animal.dao.HappyWriteDAO;
+import com.animal.dao.HappyBoardDAO;
 import com.animal.dao.MemberDAO;
 import com.animal.dao.RecruitDAO;
 import com.animal.dao.VoluntenDAO;
@@ -14,7 +14,7 @@ import com.animal.vo.VoluntenVO;
 
 public class Service {
 	private final MemberDAO memberDAO;
-	private final HappyWriteDAO happyWriteDAO;
+	private final HappyBoardDAO happyBoardDAO;
 	private final VoluntenDAO vDao;
 	private final RecruitDAO rDao;
 	
@@ -26,7 +26,7 @@ public class Service {
 	
 	private Service() { 
 		memberDAO = MemberDAO.getInstance();
-		happyWriteDAO = HappyWriteDAO.getInstance();
+		happyBoardDAO = HappyBoardDAO.getInstance();
 		vDao = VoluntenDAO.getInstance();
 		rDao = RecruitDAO.getInstance();
 	}
@@ -51,7 +51,15 @@ public class Service {
 	
 	// 헤피 게시판 - 김영우
 	public int happyBoardWrite(HappyBoardVO vo) {
-		return happyWriteDAO.happyBoardWrite(vo);
+		return happyBoardDAO.happyBoardWrite(vo);
+	}
+	
+	public int getHappyBoardWriterResultIdx(HappyBoardVO vo) {
+		return happyBoardDAO.getHappyBoardWriterResultIdx(vo);
+	}
+	
+	public HappyBoardVO getHappyBoardViewByIdx(int idx) {
+		return happyBoardDAO.getHappyBoardViewByIdx(idx);
 	}
 	
 	

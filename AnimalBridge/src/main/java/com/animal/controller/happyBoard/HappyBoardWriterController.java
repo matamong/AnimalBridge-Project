@@ -1,7 +1,6 @@
 package com.animal.controller.happyBoard;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ public class HappyBoardWriterController implements SubController {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException {
-//		String path = "/AnimalBridge/view/happyBoardView/happyBoardView.jsp";
+		String path = "/view/happyBoardView/happyBoardView.jsp";
 		
 		String folderName = "view/happyBoardView/images";
 		String realPath = req.getServletContext().getRealPath(folderName);
@@ -83,23 +82,24 @@ public class HappyBoardWriterController implements SubController {
 		Service service = Service.getInstance();
 		int result = service.happyBoardWrite(happyBoardVO);
 		
-		PrintWriter out = resp.getWriter();
-		out.print("<h3>결과</h3>");
-		out.print(result);
-		
-		/*
-		 * if(result > 0) { HappyBoardVO resultVO = service.getHappyBoardIdx(nickName,
-		 * title, content, IMG_PATH + fileName_1, IMG_PATH + fileName_2, IMG_PATH +
-		 * fileName_3);
-		 * 
-		 * PrintWriter out = resp.getWriter(); out.print("<h1>게시글 결과</h1>");
-		 * out.print("<p>IDX : </p>"); out.print("<p>NICK_NAME : </p>");
-		 * out.print("<p>TITLE : </p>"); out.print("<p>CONTENT : </p>");
-		 * out.print("<p>REG_DATE : </p>"); out.print("<p>WATCH : </p>");
-		 * out.print("<p>HIT : </p>"); out.print("<p>IMG_1 : </p>");
-		 * out.print("<p>IMG_2 : </p>"); out.print("<p>IMG_3 : </p>"); }
-		 */
-		
+		if(result > 0) {
+			int contentIdx = service.getHappyBoardWriterResultIdx(happyBoardVO);
+			HappyBoardVO resultVO = service.getHappyBoardViewByIdx(contentIdx);
+			
+			System.out.println("IDX : " + resultVO.getIdx());
+			System.out.println("NICK_NAME : " + resultVO.getNickName());
+			System.out.println("IMG_1 : " + resultVO.getImg_1());
+			System.out.println("IMG_2 : " + resultVO.getImg_2());
+			System.out.println("IMG_3 : " + resultVO.getImg_3());
+			System.out.println("CONTENT : " + resultVO.getContent());
+			System.out.println("TITLE : " + resultVO.getTitle());
+			
+			
+//			path += "?happyBoardContentIdx=" + contentIdx;
+//			System.out.println(path);
+//			
+//			AppUtil.forward(req, resp, path);
+		}
 	}
 }
 

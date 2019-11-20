@@ -12,6 +12,7 @@
 	</head>
 
 	<body>
-		
+		<h1>happyBoardView.jsp 의 결과 !</h1>
+		등록번호 : ${param.happyBoardContentIdx}
 	</body>
 </html>
