@@ -1,4 +1,4 @@
-CREATE TABLE MEMBER(
+CREATE TABLE ANIMAL_MEMBER(
     EMAIL           VARCHAR2(30) PRIMARY KEY,
     NAME            VARCHAR2(10) NOT NULL,
     NICK_NAME       VARCHAR2(20) UNIQUE NOT NULL,
@@ -7,12 +7,12 @@ CREATE TABLE MEMBER(
     ADDR            VARCHAR2(30) NOT NULL,
     EDU_STATE       VARCHAR2(5)  DEFAULT 'NO',
     NO_SHOW_CNT     NUMBER(2)    DEFAULT 0,
-    GRADE           VARCHAR2(10) DEFAULT 'ÀÏ¹ÝÈ¸¿ø'
+    GRADE           VARCHAR2(20) DEFAULT 'normal'
 );
 
 DROP TABLE MEMBER;
 
 INSERT INTO MEMBER(EMAIL, NAME, NICK_NAME, PASSWORD, PHONE, ADDR)
-            VALUES('a@a', 'kim', 'chocobe', 'pw', '010', 'ºÎ»ê');
+            VALUES('a@a', 'kim', 'chocobe', 'pw', '010', 'ë¶€ì‚°');
             
-SELECT * FROM MEMBER;
+SELECT * FROM ANIMAL_MEMBER;

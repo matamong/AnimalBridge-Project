@@ -1,10 +1,13 @@
 package com.animal.service;
 
+import com.animal.dao.HappyWriteDAO;
 import com.animal.dao.MemberDAO;
+import com.animal.vo.HappyBoardVO;
 import com.animal.vo.MemberVO;
 
 public class Service {
-	private final MemberDAO dao;
+	private final MemberDAO memberDAO;
+	private final HappyWriteDAO happyWriteDAO;
 	private static final Service service;
 	
 	static {
@@ -12,7 +15,8 @@ public class Service {
 	}
 	
 	private Service() { 
-		dao = MemberDAO.getInstance();
+		memberDAO = MemberDAO.getInstance();
+		happyWriteDAO = HappyWriteDAO.getInstance();
 	}
 	
 	public static Service getInstance() {
@@ -21,14 +25,19 @@ public class Service {
 	
 	
 	public int memberJoin(MemberVO vo) {
-		return dao.memberJoin(vo); 
+		return memberDAO.memberJoin(vo); 
 	}
 	
 	public MemberVO memberLogIn(String nickName, String password) {
-		return dao.memberLogIn(nickName, password);
+		return memberDAO.memberLogIn(nickName, password);
 	}
 	
 	public int memberLeave(String memberLogIn, String password) {
-		return dao.memberLeave(memberLogIn, password);
+		return memberDAO.memberLeave(memberLogIn, password);
+	}
+	
+	
+	public int happyBoardWrite(HappyBoardVO vo) {
+		return happyWriteDAO.happyBoardWrite(vo);
 	}
 }

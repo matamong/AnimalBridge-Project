@@ -50,6 +50,13 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- cos.jar 파일 업/다운 을 위한 라이브러리 입니다. -->
+		<dependency>
+    		<groupId>servlets.com</groupId>
+    		<artifactId>cos</artifactId>
+    		<version>05Nov2002</version>
+		</dependency>
 	</dependencies>
 
 	<build>
