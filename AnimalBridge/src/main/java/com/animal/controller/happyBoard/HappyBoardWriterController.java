@@ -15,20 +15,14 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class HappyBoardWriterController implements SubController {
-	private static final String IMG_PATH;
-	
-	static {
-		IMG_PATH = "/AnimalBridge/view/happyBoardView/images/";
-	}
-	
-	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException {
-		String path = "/view/happyBoardView/happyBoardView.jsp";
+		String path = "/view/happyBoardView/happyBoardView.do";
 		
-		String folderName = "view/happyBoardView/images";
-		String realPath = req.getServletContext().getRealPath(folderName);
+		String folderName = "images";
+		String folderDir = "view/happyBoardView/";
+		String realPath = req.getServletContext().getRealPath(folderDir + folderName);
 		
 		System.out.println(realPath);
 		
@@ -84,21 +78,24 @@ public class HappyBoardWriterController implements SubController {
 		
 		if(result > 0) {
 			int contentIdx = service.getHappyBoardWriterResultIdx(happyBoardVO);
-			HappyBoardVO resultVO = service.getHappyBoardViewByIdx(contentIdx);
 			
-			System.out.println("IDX : " + resultVO.getIdx());
-			System.out.println("NICK_NAME : " + resultVO.getNickName());
-			System.out.println("IMG_1 : " + resultVO.getImg_1());
-			System.out.println("IMG_2 : " + resultVO.getImg_2());
-			System.out.println("IMG_3 : " + resultVO.getImg_3());
-			System.out.println("CONTENT : " + resultVO.getContent());
-			System.out.println("TITLE : " + resultVO.getTitle());
-			
-			
-//			path += "?happyBoardContentIdx=" + contentIdx;
-//			System.out.println(path);
+			// 테스트 완료
+//			HappyBoardVO resultVO = service.getHappyBoardViewByIdx(contentIdx);
 //			
-//			AppUtil.forward(req, resp, path);
+//			System.out.println("IDX : " + resultVO.getIdx());
+//			System.out.println("NICK_NAME : " + resultVO.getNickName());
+//			System.out.println("IMG_1 : " + resultVO.getImg_1());
+//			System.out.println("IMG_2 : " + resultVO.getImg_2());
+//			System.out.println("IMG_3 : " + resultVO.getImg_3());
+//			System.out.println("CONTENT : " + resultVO.getContent());
+//			System.out.println("TITLE : " + resultVO.getTitle());
+			
+			
+			path += "?happyBoardViewIdx=" + contentIdx;
+			
+			System.out.println(path);
+			
+			AppUtil.forward(req, resp, path);
 		}
 	}
 }
