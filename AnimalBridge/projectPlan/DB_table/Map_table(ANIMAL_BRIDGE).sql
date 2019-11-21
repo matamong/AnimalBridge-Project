@@ -1,5 +1,3 @@
-
-
 INSERT INTO animal_member(EMAIL, NAME, NICK_NAME, PASSWORD, PHONE, ADDR)
             VALUES('aa', 'aa', 'aa', 'aa', 'aa', '직원');
 
