@@ -78,22 +78,7 @@ public class HappyBoardWriterController implements SubController {
 		
 		if(result > 0) {
 			int contentIdx = service.getHappyBoardWriterResultIdx(happyBoardVO);
-			
-			// 테스트 완료
-//			HappyBoardVO resultVO = service.getHappyBoardViewByIdx(contentIdx);
-//			
-//			System.out.println("IDX : " + resultVO.getIdx());
-//			System.out.println("NICK_NAME : " + resultVO.getNickName());
-//			System.out.println("IMG_1 : " + resultVO.getImg_1());
-//			System.out.println("IMG_2 : " + resultVO.getImg_2());
-//			System.out.println("IMG_3 : " + resultVO.getImg_3());
-//			System.out.println("CONTENT : " + resultVO.getContent());
-//			System.out.println("TITLE : " + resultVO.getTitle());
-			
-			
 			path += "?happyBoardViewIdx=" + contentIdx;
-			
-			System.out.println(path);
 			
 			AppUtil.forward(req, resp, path);
 		}
