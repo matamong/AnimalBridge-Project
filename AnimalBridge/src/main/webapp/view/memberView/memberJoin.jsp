@@ -55,10 +55,11 @@
 				justify-content: center;
 			}
 			
-			form div:last-child input {
-				margin: 0 5px 0 5px;
-			}
 			
+			
+			form div div span ~ * {
+				margin: 10px 10px 0 0;
+			}
 		</style>
 	</head>
 
@@ -91,6 +92,21 @@
 			<div>
 				<span>주소 : </span>
 				<input type="text" name="addr"/>
+			</div>
+			
+			<div>
+				<div>
+					<span>회원 등급</span>
+					
+					<input type="radio" name="grade" value="normal">
+					<label>일반회원</label>
+					
+					<input type="radio" name="grade" value="protectCenter"/>
+					<label>보호소</label>
+					
+					<input type="radio" name="grade" value="protector"/>
+					<label>보호사</label>
+				</div>
 			</div>
 			<div>
 				<input type="submit" value="회원가입"/>
