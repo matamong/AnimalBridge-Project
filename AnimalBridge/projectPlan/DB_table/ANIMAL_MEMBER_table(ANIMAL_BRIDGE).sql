@@ -9,7 +9,7 @@ CREATE TABLE ANIMAL_MEMBER(
     PHONE           VARCHAR(11) UNIQUE NOT NULL,
     ADDR            VARCHAR(30) NOT NULL,
     EDU_STATE       VARCHAR(5)  DEFAULT 'NO',
-    NO_SHOW_CNT     INT		     DEFAULT 0,
+    NO_SHOW_CNT     INT		    DEFAULT 0,
     GRADE           VARCHAR(20)
 );
 
@@ -19,6 +19,8 @@ INSERT INTO ANIMAL_MEMBER (EMAIL, NAME, NICK_NAME, PASSWORD, PHONE, ADDR)
             VALUES('a@a', 'kim', 'chocobe', 'pw', '010', '부산');
             
 SELECT * FROM ANIMAL_MEMBER;
+
+
 
 
 
