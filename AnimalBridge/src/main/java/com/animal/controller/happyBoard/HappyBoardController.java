@@ -42,6 +42,14 @@ public class HappyBoardController implements SubController {
 		
 		
 		int parsedRequestPage = Integer.parseInt(requestPage);
+		if(parsedRequestPage < 0) {
+			parsedRequestPage = 0;
+			
+		} else if(parsedRequestPage >= totalHappyBoardPageCnt - 1) {
+			parsedRequestPage = totalHappyBoardPageCnt - 1;
+		}
+
+		
 		int beginPage = (parsedRequestPage - 2) > 0 ? (parsedRequestPage - 2) : 0;
 		
 		int endPage = beginPage + 4;
@@ -50,6 +58,7 @@ public class HappyBoardController implements SubController {
 		}
 		req.setAttribute("happyBoardBeginPage", beginPage);
 		req.setAttribute("happyBoardEndPage", endPage);
+		req.setAttribute("happyBoardCurrentPage", parsedRequestPage);
 		
 		
 		List<HappyBoardVO> happyBoardViewList = service.getHappyBoardViewList(parsedRequestPage, PAGE_DIV_DEGREE);

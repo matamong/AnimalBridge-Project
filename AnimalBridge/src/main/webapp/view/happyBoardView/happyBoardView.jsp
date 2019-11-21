@@ -29,5 +29,9 @@
 		<img src="${resultHappyBoardViewVO.img_1}"><br/>
 		<img src="${resultHappyBoardViewVO.img_2}"><br/>
 		<img src="${resultHappyBoardViewVO.img_3}"><br/>
+		
+		<br/>
+		
+		<input type="button" value="이전으로" onclick="location.href='/AnimalBridge/view/happyBoardView/happyBoard.do'">
 	</body>
 </html>

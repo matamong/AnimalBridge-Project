@@ -169,7 +169,7 @@ public class HappyBoardDAO {
 		List<HappyBoardVO> result = new ArrayList<HappyBoardVO>();
 		
 		try {
-			String sql = "SELECT * FROM HAPPY_BOARD ORDER BY IDX LIMIT ? OFFSET ?";
+			String sql = "SELECT * FROM HAPPY_BOARD ORDER BY IDX DESC LIMIT ? OFFSET ?";
 			
 			conn = DBCP.getConnection();
 			preStatement = conn.prepareStatement(sql);
