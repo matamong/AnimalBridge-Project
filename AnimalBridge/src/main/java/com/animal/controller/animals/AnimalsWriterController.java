@@ -109,54 +109,11 @@ public class AnimalsWriterController implements SubController {
 		Service service = Service.getInstance();
 		int result = service.animalsWriter(animalsVO);
 		
-		PrintWriter out = resp.getWriter();
-		out.print("<h1>AnimalsWriter결과</h1>");
-		out.print("<h3>result : " + result + "</h3>");
-		
-		out.close();
-		
-//		if(result > 0) {
-//			int animalsWriterIdx = service.getAnimalsWriterResultIdx(animalsVO);
-//			path += "?animalsWriterIdx=" + animalsWriterIdx;
-//			
-//			AppUtil.forward(req, resp, path);
-//		}
-		
-		
-		
-		
-//		// TEST
-//		PrintWriter out = resp.getWriter();
-//		
-//		centerIdx = multi.getParameter("centerIdx");
-//		animalType = multi.getParameter("animalType");
-//		animalSort = multi.getParameter("animalSort");
-//		animalGender = multi.getParameter("animalGender");
-//		animalNeuter = multi.getParameter("animalNeuter");
-//		animalInoculation = multi.getParameter("animalInoculation");
-//		animalFeature = multi.getParameter("animalFeature");
-//		
-//		out.print("<h1>AnimalsWriterController Test</h1>");
-//		
-//		out.print("<hr/>");
-//		
-//		out.print("<p>CenterIDX : " + centerIdx + "</p>");
-//		out.print("<p>AnimalType : " + animalType + "</p>");
-//		out.print("<p>AnimalSort : " + animalSort + "</p>");
-//		out.print("<p>AnimalGender : " + animalGender + "</p>");
-//		out.print("<p>AnimalNeuter : " + animalNeuter + "</p>");
-//		out.print("<p>AnimalInoculation : " + animalInoculation + "</p>");
-//		out.print("<p>AnimalFeatuer : " + animalFeature + "</p>");
-//		
-//		out.print("<hr/>");
-//		
-//		out.print("<p>IMG_1 : " + img_1 + "</p>");
-//		out.print("<p>IMG_2 : " + img_2 + "</p>");
-//		out.print("<p>IMG_3 : " + img_3 + "</p>");
-//		out.print("<p>IMG_4 : " + img_4 + "</p>");
-//		out.print("<p>IMG_5 : " + img_5 + "</p>");
-//		out.print("<p>IMG_6 : " + img_6 + "</p>");
-//		
-//		out.close();
+		if(result > 0) {
+			int contentIdx = service.getAnimalsWriterResultIdx(animalsVO);
+			path += "?animalsViewIdx=" + contentIdx;
+			
+			AppUtil.forward(req, resp, path);
+		}
 	}
 }

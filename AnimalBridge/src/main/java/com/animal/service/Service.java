@@ -81,6 +81,10 @@ public class Service {
 		return animalsDAO.animalsWriter(vo);
 	}
 	
+	public int getAnimalsWriterResultIdx(AnimalsVO vo) {
+		return animalsDAO.getAnimalsWriterResultIdx(vo);
+	}
+	
 	
 	// 서비스 추가 - 이정민
 	public int voluntenInsert(VoluntenVO vo) {

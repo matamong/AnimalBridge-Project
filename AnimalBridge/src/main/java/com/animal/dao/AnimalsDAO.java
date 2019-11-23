@@ -76,4 +76,56 @@ public class AnimalsDAO {
 		
 		return result;
 	}
+	
+	
+	public int getAnimalsWriterResultIdx(AnimalsVO vo) {
+		int result = 0;
+		
+		try {
+			String sql = "SELECT ANIMAL_IDX FROM ANIMALS WHERE " +
+															   "CENTER_IDX=? AND " +
+															   "ANIMAL_TYPE=? AND " +
+															   "ANIMAL_SORT=? AND " +
+															   "ANIMAL_GENDER=? AND " +
+															   "ANIMAL_NEUTER=? AND " +
+															   "ANIMAL_INOCULATION=? AND " +
+															   "ANIMAL_FEATURE=? AND " +
+															   "IMG_1=? AND " +
+															   "IMG_2=? AND " +
+															   "IMG_3=? AND " +
+															   "IMG_4=? AND " +
+															   "IMG_5=? AND " +
+															   "IMG_6=?";
+			conn = DBCP.getConnection();
+			
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, vo.getCenterIdx());
+			preStatement.setString(2, vo.getAnimalType());
+			preStatement.setString(3, vo.getAnimalSort());
+			preStatement.setString(4, vo.getAnimalGender());
+			preStatement.setString(5, vo.getAnimalNeuter());
+			preStatement.setString(6, vo.getAnimalInoculation());
+			preStatement.setString(7, vo.getAnimalFeature());
+			preStatement.setString(8, vo.getImg_1());
+			preStatement.setString(9, vo.getImg_2());
+			preStatement.setString(10, vo.getImg_3());
+			preStatement.setString(11, vo.getImg_4());
+			preStatement.setString(12, vo.getImg_5());
+			preStatement.setString(13, vo.getImg_6());
+			
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = resultSet.getInt("ANIMAL_IDX");
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("AnimalsDAO - getAnimalsWriterResultIdx() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}		
+		
+		return result;
+	}
 }
