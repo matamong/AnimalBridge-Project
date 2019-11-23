@@ -21,6 +21,7 @@
 
 	<body>
 		<h1>happyBoard.jsp 페이지 입니다.</h1>
+		<h3>현재 페이지 번호 : ${happyBoardCurrentPage}</h3>
 		
 		<table border="1">
 		<c:forEach items="${happyBoardViewList}" var="item">
@@ -43,10 +44,15 @@
 		<br/>
 		
 		<p>
-			페이지 : 
+			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=0">⏮</a>
+			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=${happyBoardCurrentPage - 2}">⏪</a>
+			
 			<c:forEach begin="${happyBoardBeginPage}" end="${happyBoardEndPage}" var="i">
 				<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=${i}">${i + 1}</a> 
 			</c:forEach>
+			
+			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=${happyBoardCurrentPage + 2}">⏩</a>
+			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=${totalHappyBoardPageCnt - 1}">⏯</a>
 		</p>
 		
 		<br/>

@@ -29,5 +29,9 @@
 		<img src="${resultHappyBoardViewVO.img_1}"><br/>
 		<img src="${resultHappyBoardViewVO.img_2}"><br/>
 		<img src="${resultHappyBoardViewVO.img_3}"><br/>
+		
+		<br/><br/>
+		
+		<a href="/AnimalBridge/view/happyBoardView/happyBoard.do">홈으로</a>
 	</body>
 </html>
