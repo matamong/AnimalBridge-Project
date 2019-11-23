@@ -203,6 +203,8 @@
         			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeave.jsp'">탈퇴</li>
         		</c:otherwise>
         	</c:choose>
+        	
+        	<li onclick="location.href='/AnimalBridge/view/animalsView/animalsWriter.jsp'">반여동물 등록</li>
             
             <li>사이트 소개</li>
         </ul>
