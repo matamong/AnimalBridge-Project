@@ -4,10 +4,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.animal.dao.AnimalsDAO;
 import com.animal.dao.HappyBoardDAO;
 import com.animal.dao.MemberDAO;
 import com.animal.dao.RecruitDAO;
 import com.animal.dao.VoluntenDAO;
+import com.animal.vo.AnimalsVO;
 import com.animal.vo.HappyBoardVO;
 import com.animal.vo.MemberVO;
 import com.animal.vo.RecruitVO;
@@ -16,6 +18,7 @@ import com.animal.vo.VoluntenVO;
 public class Service {
 	private final MemberDAO memberDAO;
 	private final HappyBoardDAO happyBoardDAO;
+	private final AnimalsDAO animalsDAO;
 	private final VoluntenDAO vDao;
 	private final RecruitDAO rDao;
 	
@@ -28,6 +31,7 @@ public class Service {
 	private Service() { 
 		memberDAO = MemberDAO.getInstance();
 		happyBoardDAO = HappyBoardDAO.getInstance();
+		animalsDAO = AnimalsDAO.getInstance();
 		vDao = VoluntenDAO.getInstance();
 		rDao = RecruitDAO.getInstance();
 	}
@@ -69,6 +73,12 @@ public class Service {
 	
 	public List<HappyBoardVO> getHappyBoardViewList(int requestPage, int pageDivDegree) {
 		return happyBoardDAO.getHappyBoardViewList(requestPage, pageDivDegree);
+	}
+	
+	
+	// 반여동물 게시판 - 김영우
+	public int animalsWriter(AnimalsVO vo) {
+		return animalsDAO.animalsWriter(vo);
 	}
 	
 	

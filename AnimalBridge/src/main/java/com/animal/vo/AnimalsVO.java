@@ -1,4 +1,4 @@
-package com.animal.dao;
+package com.animal.vo;
 
 public class AnimalsVO {
 	private int animalId;
@@ -10,7 +10,7 @@ public class AnimalsVO {
 	private String animalInoculation;
 	private String animalFeature;
 	private String adoptionDate;
-	private int memberIdx;
+	private String memberNickName;
 	private String img_1;
 	private String img_2;
 	private String img_3;
@@ -94,11 +94,11 @@ public class AnimalsVO {
 	}
 
 
-	public int getMemberIdx() {
-		return memberIdx;
+	public String getMemberNickName() {
+		return memberNickName;
 	}
-	public void setMemberIdx(int memberIdx) {
-		this.memberIdx = memberIdx;
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 
 

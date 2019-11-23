@@ -8,7 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.animal.controller.AppUtil;
 import com.animal.controller.SubController;
+import com.animal.service.Service;
+import com.animal.vo.AnimalsVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -16,8 +19,7 @@ public class AnimalsWriterController implements SubController {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException {
-		String path = "/view/animalsView/animalsView.jsp";
-		
+		String path = "/view/animalsView/animalsView.do";
 		
 		String folderName = "images";
 		String folderDir = "view/animalsView/";
@@ -34,7 +36,7 @@ public class AnimalsWriterController implements SubController {
 													  encType,
 													  new DefaultFileRenamePolicy());
 		
-		String centerIdx = multi.getParameter("centerIdx");
+		int centerIdx = Integer.parseInt(multi.getParameter("centerIdx"));
 		String animalType = multi.getParameter("animalType");
 		String animalSort = multi.getParameter("animalSort");
 		String animalGender = multi.getParameter("animalGender");
@@ -42,7 +44,9 @@ public class AnimalsWriterController implements SubController {
 		String animalInoculation = multi.getParameter("animalInoculation");
 		String animalFeature = multi.getParameter("animalFeature");
 		
-		Enumeration<String> formTagNames = multi.getFileNames();
+		
+		@SuppressWarnings("unchecked")
+		Enumeration<String> formTagNames = (Enumeration<String>)multi.getFileNames();
 		String img_1 = "";
 		String img_2 = "";
 		String img_3 = "";
@@ -87,38 +91,72 @@ public class AnimalsWriterController implements SubController {
 		}
 		
 		
-		// TEST
+		AnimalsVO animalsVO = new AnimalsVO();
+		animalsVO.setCenterIdx(centerIdx);
+		animalsVO.setAnimalType(animalType);
+		animalsVO.setAnimalSort(animalSort);
+		animalsVO.setAnimalGender(animalGender);
+		animalsVO.setAnimalNeuter(animalNeuter);
+		animalsVO.setAnimalInoculation(animalInoculation);
+		animalsVO.setAnimalFeature(animalFeature);
+		animalsVO.setImg_1(img_1);
+		animalsVO.setImg_2(img_2);
+		animalsVO.setImg_3(img_3);
+		animalsVO.setImg_4(img_4);
+		animalsVO.setImg_5(img_5);
+		animalsVO.setImg_6(img_6);
+		
+		Service service = Service.getInstance();
+		int result = service.animalsWriter(animalsVO);
+		
 		PrintWriter out = resp.getWriter();
-		
-		centerIdx = multi.getParameter("centerIdx");
-		animalType = multi.getParameter("animalType");
-		animalSort = multi.getParameter("animalSort");
-		animalGender = multi.getParameter("animalGender");
-		animalNeuter = multi.getParameter("animalNeuter");
-		animalInoculation = multi.getParameter("animalInoculation");
-		animalFeature = multi.getParameter("animalFeature");
-		
-		out.print("<h1>AnimalsWriterController Test</h1>");
-		
-		out.print("<hr/>");
-		
-		out.print("<p>CenterIDX : " + centerIdx + "</p>");
-		out.print("<p>AnimalType : " + animalType + "</p>");
-		out.print("<p>AnimalSort : " + animalSort + "</p>");
-		out.print("<p>AnimalGender : " + animalGender + "</p>");
-		out.print("<p>AnimalNeuter : " + animalNeuter + "</p>");
-		out.print("<p>AnimalInoculation : " + animalInoculation + "</p>");
-		out.print("<p>AnimalFeatuer : " + animalFeature + "</p>");
-		
-		out.print("<hr/>");
-		
-		out.print("<p>IMG_1 : " + img_1 + "</p>");
-		out.print("<p>IMG_2 : " + img_2 + "</p>");
-		out.print("<p>IMG_3 : " + img_3 + "</p>");
-		out.print("<p>IMG_4 : " + img_4 + "</p>");
-		out.print("<p>IMG_5 : " + img_5 + "</p>");
-		out.print("<p>IMG_6 : " + img_6 + "</p>");
+		out.print("<h1>AnimalsWriter결과</h1>");
+		out.print("<h3>result : " + result + "</h3>");
 		
 		out.close();
+		
+//		if(result > 0) {
+//			int animalsWriterIdx = service.getAnimalsWriterResultIdx(animalsVO);
+//			path += "?animalsWriterIdx=" + animalsWriterIdx;
+//			
+//			AppUtil.forward(req, resp, path);
+//		}
+		
+		
+		
+		
+//		// TEST
+//		PrintWriter out = resp.getWriter();
+//		
+//		centerIdx = multi.getParameter("centerIdx");
+//		animalType = multi.getParameter("animalType");
+//		animalSort = multi.getParameter("animalSort");
+//		animalGender = multi.getParameter("animalGender");
+//		animalNeuter = multi.getParameter("animalNeuter");
+//		animalInoculation = multi.getParameter("animalInoculation");
+//		animalFeature = multi.getParameter("animalFeature");
+//		
+//		out.print("<h1>AnimalsWriterController Test</h1>");
+//		
+//		out.print("<hr/>");
+//		
+//		out.print("<p>CenterIDX : " + centerIdx + "</p>");
+//		out.print("<p>AnimalType : " + animalType + "</p>");
+//		out.print("<p>AnimalSort : " + animalSort + "</p>");
+//		out.print("<p>AnimalGender : " + animalGender + "</p>");
+//		out.print("<p>AnimalNeuter : " + animalNeuter + "</p>");
+//		out.print("<p>AnimalInoculation : " + animalInoculation + "</p>");
+//		out.print("<p>AnimalFeatuer : " + animalFeature + "</p>");
+//		
+//		out.print("<hr/>");
+//		
+//		out.print("<p>IMG_1 : " + img_1 + "</p>");
+//		out.print("<p>IMG_2 : " + img_2 + "</p>");
+//		out.print("<p>IMG_3 : " + img_3 + "</p>");
+//		out.print("<p>IMG_4 : " + img_4 + "</p>");
+//		out.print("<p>IMG_5 : " + img_5 + "</p>");
+//		out.print("<p>IMG_6 : " + img_6 + "</p>");
+//		
+//		out.close();
 	}
 }
