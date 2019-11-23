@@ -76,13 +76,17 @@ public class Service {
 	}
 	
 	
-	// 반여동물 게시판 - 김영우
+	// 반려동물 게시판 - 김영우
 	public int animalsWriter(AnimalsVO vo) {
 		return animalsDAO.animalsWriter(vo);
 	}
 	
 	public int getAnimalsWriterResultIdx(AnimalsVO vo) {
 		return animalsDAO.getAnimalsWriterResultIdx(vo);
+	}
+	
+	public AnimalsVO getAnimalsViewByIdx(int idx) {
+		return animalsDAO.getAnimalsViewByIdx(idx);
 	}
 	
 	

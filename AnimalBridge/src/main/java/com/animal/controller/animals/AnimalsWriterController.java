@@ -1,7 +1,6 @@
 package com.animal.controller.animals;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;

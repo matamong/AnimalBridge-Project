@@ -128,4 +128,46 @@ public class AnimalsDAO {
 		
 		return result;
 	}
+	
+	
+	public AnimalsVO getAnimalsViewByIdx(int idx) {
+		AnimalsVO result = null;
+		
+		try {
+			String sql = "SELECT * FROM ANIMALS WHERE ANIMAL_IDX=?";
+			
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setInt(1, idx);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = new AnimalsVO();
+				result.setAnimalIdx(resultSet.getInt("ANIMAL_IDX"));
+				result.setCenterIdx(resultSet.getInt("CENTER_IDX"));
+				result.setAnimalType(resultSet.getString("ANIMAL_TYPE"));
+				result.setAnimalSort(resultSet.getString("ANIMAL_SORT"));
+				result.setAnimalGender(resultSet.getString("ANIMAL_GENDER"));
+				result.setAnimalNeuter(resultSet.getString("ANIMAL_NEUTER"));
+				result.setAnimalInoculation(resultSet.getString("ANIMAL_INOCULATION"));
+				result.setAnimalFeature(resultSet.getString("ANIMAL_FEATURE"));
+				result.setAdoptionDate(resultSet.getDate("ADOPTION_DATE").toString());
+				result.setMemberNickName(resultSet.getString("MEMBER_NICK_NAME"));
+				result.setImg_1(resultSet.getString("IMG_1"));
+				result.setImg_2(resultSet.getString("IMG_2"));
+				result.setImg_3(resultSet.getString("IMG_3"));
+				result.setImg_4(resultSet.getString("IMG_4"));
+				result.setImg_5(resultSet.getString("IMG_5"));
+				result.setImg_6(resultSet.getString("IMG_6"));
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("AnimalsDAO - getAnimalsViewByIdx() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
+		return result;
+	}
 }

@@ -1,7 +1,7 @@
 package com.animal.vo;
 
 public class AnimalsVO {
-	private int animalId;
+	private int animalIdx;
 	private int centerIdx;
 	private String animalType;
 	private String animalSort;
@@ -22,11 +22,11 @@ public class AnimalsVO {
 	public AnimalsVO() { }
 
 
-	public int getAnimalId() {
-		return animalId;
+	public int getAnimalIdx() {
+		return animalIdx;
 	}
-	public void setAnimalId(int animalId) {
-		this.animalId = animalId;
+	public void setAnimalIdx(int animalIdx) {
+		this.animalIdx = animalIdx;
 	}
 
 
