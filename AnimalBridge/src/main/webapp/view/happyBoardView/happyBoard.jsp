@@ -44,7 +44,6 @@
 		<br/>
 		
 		<p>
-			페이지 : 
 			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=0">⏮</a>
 			<a href="/AnimalBridge/view/happyBoardView/happyBoard.do?requestPage=${happyBoardCurrentPage - 2}">⏪</a>
 			

@@ -30,8 +30,8 @@
 		<img src="${resultHappyBoardViewVO.img_2}"><br/>
 		<img src="${resultHappyBoardViewVO.img_3}"><br/>
 		
-		<br/>
+		<br/><br/>
 		
-		<input type="button" value="이전으로" onclick="location.href='/AnimalBridge/view/happyBoardView/happyBoard.do'">
+		<a href="/AnimalBridge/view/happyBoardView/happyBoard.do">홈으로</a>
 	</body>
 </html>

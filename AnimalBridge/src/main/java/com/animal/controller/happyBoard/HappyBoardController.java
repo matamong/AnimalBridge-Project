@@ -44,11 +44,13 @@ public class HappyBoardController implements SubController {
 		int parsedRequestPage = Integer.parseInt(requestPage);
 		if(parsedRequestPage < 0) {
 			parsedRequestPage = 0;
-			
-		} else if(parsedRequestPage >= totalHappyBoardPageCnt - 1) {
+		}
+		
+		if(parsedRequestPage >= totalHappyBoardPageCnt) {
 			parsedRequestPage = totalHappyBoardPageCnt - 1;
 		}
-
+		
+		req.setAttribute("happyBoardCurrentPage", parsedRequestPage);
 		
 		int beginPage = (parsedRequestPage - 2) > 0 ? (parsedRequestPage - 2) : 0;
 		
