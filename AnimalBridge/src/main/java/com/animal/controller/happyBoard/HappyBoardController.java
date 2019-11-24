@@ -60,7 +60,6 @@ public class HappyBoardController implements SubController {
 		}
 		req.setAttribute("happyBoardBeginPage", beginPage);
 		req.setAttribute("happyBoardEndPage", endPage);
-		req.setAttribute("happyBoardCurrentPage", parsedRequestPage);
 		
 		
 		List<HappyBoardVO> happyBoardViewList = service.getHappyBoardViewList(parsedRequestPage, PAGE_DIV_DEGREE);

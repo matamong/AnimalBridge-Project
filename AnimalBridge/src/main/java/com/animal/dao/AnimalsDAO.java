@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.animal.dbConnection.DBCP;
 import com.animal.vo.AnimalsVO;
@@ -167,6 +169,97 @@ public class AnimalsDAO {
 		} finally {
 			DBCP.close(conn, preStatement, resultSet);
 		}
+		
+		return result;
+	}
+	
+	
+	public int getTotalAnimalsListCnt(String requestAnimalType) {
+		int result = 0;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM ANIMALS";
+			conn = DBCP.getConnection();
+			
+			if(!requestAnimalType.equals("all")) {
+				sql += " WHERE ANIMAL_TYPE=?";
+				preStatement = conn.prepareStatement(sql);
+				preStatement.setString(1, requestAnimalType);
+				
+			} else {
+				preStatement = conn.prepareStatement(sql);
+			}
+			
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = resultSet.getInt(1);
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("AnimalsDAO - getTotalAnimalsListCnt() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
+		
+		return result;
+	}
+	
+	
+	public List<AnimalsVO> getAnimalsList(int requestPage, int pageDivDegree, String requestAnimalType) {
+		List<AnimalsVO> result = new ArrayList<AnimalsVO>();
+		
+		try {
+			String sql = "SELECT * FROM ANIMALS ORDER BY ANIMAL_IDX DESC";
+			conn = DBCP.getConnection();
+			
+			if(!requestAnimalType.equals("all")) {
+				sql += " WHERE ANIMAL_TYPE=? LIMIT ? OFFSET ?";
+				preStatement = conn.prepareStatement(sql);
+				preStatement.setString(1, requestAnimalType);
+				preStatement.setInt(2, pageDivDegree);
+				preStatement.setInt(3, requestPage * pageDivDegree);
+				
+			} else {
+				sql += " LIMIT ? OFFSET ?";
+				preStatement = conn.prepareStatement(sql);
+				preStatement.setInt(1, pageDivDegree);
+				preStatement.setInt(2, requestPage * pageDivDegree);
+			}
+			
+			resultSet = preStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				AnimalsVO vo = new AnimalsVO();
+				vo.setAnimalIdx(resultSet.getInt("ANIMAL_IDX"));
+				vo.setCenterIdx(resultSet.getInt("CENTER_IDX"));
+				vo.setAnimalType(resultSet.getString("ANIMAL_TYPE"));
+				vo.setAnimalSort(resultSet.getString("ANIMAL_SORT"));
+				vo.setAnimalGender(resultSet.getString("ANIMAL_GENDER"));
+				vo.setAnimalNeuter(resultSet.getString("ANIMAL_NEUTER"));
+				vo.setAnimalInoculation(resultSet.getString("ANIMAL_INOCULATION"));
+				vo.setAnimalFeature(resultSet.getString("ANIMAL_FEATURE"));
+				vo.setAdoptionDate(resultSet.getDate("ADOPTION_DATE").toString());
+				vo.setMemberNickName(resultSet.getString("MEMBER_NICK_NAME"));
+				vo.setImg_1(resultSet.getString("IMG_1"));
+				vo.setImg_2(resultSet.getString("IMG_2"));
+				vo.setImg_3(resultSet.getString("IMG_3"));
+				vo.setImg_4(resultSet.getString("IMG_4"));
+				vo.setImg_5(resultSet.getString("IMG_5"));
+				vo.setImg_6(resultSet.getString("IMG_6"));
+				
+				result.add(vo);
+			}
+			
+		} catch(SQLException e) {
+			System.out.println("AnimalsDAO - getAnimalsList() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
 		
 		return result;
 	}

@@ -89,6 +89,14 @@ public class Service {
 		return animalsDAO.getAnimalsViewByIdx(idx);
 	}
 	
+	public int getTotalAnimalsListCnt(String category) {
+		return animalsDAO.getTotalAnimalsListCnt(category);
+	}
+	
+	public List<AnimalsVO> getAnimalsList(int requestPage, int pageDivDegree, String category) {
+		return animalsDAO.getAnimalsList(requestPage, pageDivDegree, category);
+	}
+	
 	
 	// 서비스 추가 - 이정민
 	public int voluntenInsert(VoluntenVO vo) {

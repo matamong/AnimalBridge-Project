@@ -218,7 +218,7 @@
                     <div class="person_img"><img src="/AnimalBridge/view/mainView/showIcon.png"></div>
                     <div class="person_menuI">저 행복해요</div>
             </div>
-            <div class="person" id="person2">
+            <div class="person" id="person2" onclick="location.href='/AnimalBridge/view/animalsView/animalsList.do'">
                      <div class="parson_menuO">입양예약</div>
                      <div class="person_img"><img src="/AnimalBridge/view/mainView/reservationIcon.png"></div>
                      <div class="person_menuI">입양예약</div>
