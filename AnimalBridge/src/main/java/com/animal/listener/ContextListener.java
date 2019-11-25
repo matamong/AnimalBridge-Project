@@ -7,6 +7,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import com.animal.controller.SubController;
+import com.animal.controller.animals.AnimalsListController;
+import com.animal.controller.animals.AnimalsViewController;
+import com.animal.controller.animals.AnimalsWriterController;
+import com.animal.controller.happyBoard.HappyBoardController;
+import com.animal.controller.happyBoard.HappyBoardViewController;
 import com.animal.controller.happyBoard.HappyBoardWriterController;
 import com.animal.controller.map.MapSaveController;
 import com.animal.controller.map.MapShowController;
@@ -32,8 +37,14 @@ public class ContextListener implements ServletContextListener {
 		controllers.put("/view/mapView/SaveMap.do", new MapSaveController());
 		
 	// HappyBoard table
+		controllers.put("/view/happyBoardView/happyBoard.do", new HappyBoardController());
 		controllers.put("/view/happyBoardView/happyBoardWriter.do", new HappyBoardWriterController());
+		controllers.put("/view/happyBoardView/happyBoardView.do", new HappyBoardViewController());
 		
+	// Animals table
+		controllers.put("/view/animalsView/animalsWriter.do", new AnimalsWriterController());
+		controllers.put("/view/animalsView/animalsView.do", new AnimalsViewController());
+		controllers.put("/view/animalsView/animalsList.do", new AnimalsListController());
 		
 		event.getServletContext().setAttribute("controllers", controllers);
 	}

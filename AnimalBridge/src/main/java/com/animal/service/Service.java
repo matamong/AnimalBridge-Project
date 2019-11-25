@@ -2,11 +2,14 @@ package com.animal.service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
-import com.animal.dao.HappyWriteDAO;
+import com.animal.dao.AnimalsDAO;
+import com.animal.dao.HappyBoardDAO;
 import com.animal.dao.MemberDAO;
 import com.animal.dao.RecruitDAO;
 import com.animal.dao.VoluntenDAO;
+import com.animal.vo.AnimalsVO;
 import com.animal.vo.HappyBoardVO;
 import com.animal.vo.MemberVO;
 import com.animal.vo.RecruitVO;
@@ -14,7 +17,8 @@ import com.animal.vo.VoluntenVO;
 
 public class Service {
 	private final MemberDAO memberDAO;
-	private final HappyWriteDAO happyWriteDAO;
+	private final HappyBoardDAO happyBoardDAO;
+	private final AnimalsDAO animalsDAO;
 	private final VoluntenDAO vDao;
 	private final RecruitDAO rDao;
 	
@@ -26,7 +30,8 @@ public class Service {
 	
 	private Service() { 
 		memberDAO = MemberDAO.getInstance();
-		happyWriteDAO = HappyWriteDAO.getInstance();
+		happyBoardDAO = HappyBoardDAO.getInstance();
+		animalsDAO = AnimalsDAO.getInstance();
 		vDao = VoluntenDAO.getInstance();
 		rDao = RecruitDAO.getInstance();
 	}
@@ -51,7 +56,45 @@ public class Service {
 	
 	// 헤피 게시판 - 김영우
 	public int happyBoardWrite(HappyBoardVO vo) {
-		return happyWriteDAO.happyBoardWrite(vo);
+		return happyBoardDAO.happyBoardWrite(vo);
+	}
+	
+	public int getHappyBoardWriterResultIdx(HappyBoardVO vo) {
+		return happyBoardDAO.getHappyBoardWriterResultIdx(vo);
+	}
+	
+	public HappyBoardVO getHappyBoardViewByIdx(int idx) {
+		return happyBoardDAO.getHappyBoardViewByIdx(idx);
+	}
+	
+	public int getHappyBoardViewTotalCnt() {
+		return happyBoardDAO.getHappyBoardViewTotalCnt();
+	}
+	
+	public List<HappyBoardVO> getHappyBoardViewList(int requestPage, int pageDivDegree) {
+		return happyBoardDAO.getHappyBoardViewList(requestPage, pageDivDegree);
+	}
+	
+	
+	// 반려동물 게시판 - 김영우
+	public int animalsWriter(AnimalsVO vo) {
+		return animalsDAO.animalsWriter(vo);
+	}
+	
+	public int getAnimalsWriterResultIdx(AnimalsVO vo) {
+		return animalsDAO.getAnimalsWriterResultIdx(vo);
+	}
+	
+	public AnimalsVO getAnimalsViewByIdx(int idx) {
+		return animalsDAO.getAnimalsViewByIdx(idx);
+	}
+	
+	public int getTotalAnimalsListCnt(String category) {
+		return animalsDAO.getTotalAnimalsListCnt(category);
+	}
+	
+	public List<AnimalsVO> getAnimalsList(int requestPage, int pageDivDegree, String category) {
+		return animalsDAO.getAnimalsList(requestPage, pageDivDegree, category);
 	}
 	
 	
