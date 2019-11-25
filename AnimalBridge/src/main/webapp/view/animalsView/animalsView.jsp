@@ -12,6 +12,8 @@
 	</head>
 
 	<body>
+		<h1>이전 페이지의 requestAnimalType : ${requestAnimalType}</h1>
+	
 		<h1>animalsView.jsp 결과</h1>
 		<p>ANIMAL_IDX : ${resultAnimalsViewVO.animalIdx}</p>
 		<p>CENTER_IDX : ${resultAnimalsViewVO.centerIdx}</p>

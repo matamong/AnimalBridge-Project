@@ -212,18 +212,18 @@ public class AnimalsDAO {
 		List<AnimalsVO> result = new ArrayList<AnimalsVO>();
 		
 		try {
-			String sql = "SELECT * FROM ANIMALS ORDER BY ANIMAL_IDX DESC";
+			String sql = "SELECT * FROM ANIMALS";
 			conn = DBCP.getConnection();
-			
+//			SELECT * FROM ANIMALS WHERE ANIMAL_TYPE='강아지' LIMIT 5 OFFSET 0;
 			if(!requestAnimalType.equals("all")) {
-				sql += " WHERE ANIMAL_TYPE=? LIMIT ? OFFSET ?";
+				sql += " WHERE ANIMAL_TYPE=? ORDER BY ANIMAL_IDX DESC LIMIT ? OFFSET ?";
 				preStatement = conn.prepareStatement(sql);
 				preStatement.setString(1, requestAnimalType);
 				preStatement.setInt(2, pageDivDegree);
 				preStatement.setInt(3, requestPage * pageDivDegree);
 				
 			} else {
-				sql += " LIMIT ? OFFSET ?";
+				sql += " ORDER BY ANIMAL_IDX DESC LIMIT ? OFFSET ?";
 				preStatement = conn.prepareStatement(sql);
 				preStatement.setInt(1, pageDivDegree);
 				preStatement.setInt(2, requestPage * pageDivDegree);

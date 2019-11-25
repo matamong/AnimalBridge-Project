@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -32,7 +33,7 @@
 		<h3>현재 페이지 : ${animalsListCurrentPage + 1}</h3>
 		
 		<form action="/AnimalBridge/view/animalsView/animalsList.do" method="GET">
-			종류 : <input type="text" name="requestAnimalType">
+			종류 : <input type="text" name="requestAnimalType" value="${requestAnimalType}">
 			
 			<table border="1">
 				<c:forEach items="${animalsList}" var="item">
@@ -58,7 +59,9 @@
 			</table>
 			
 			<c:forEach var="item" begin="${animalsListBeginPage}" end="${animalsListEndPage}">
-				<a href="/AnimalBridge/view/animalsView/animalsList.do?requestPage=${item}">${item + 1} </a>
+				<a href="/AnimalBridge/view/animalsView/animalsList.do?requestPage=${item}&requestAnimalType=${requestAnimalType}">
+					${item + 1} 
+				</a>
 			</c:forEach>
 		</form>
 	</body>

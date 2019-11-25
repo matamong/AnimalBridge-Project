@@ -34,6 +34,7 @@ public class AnimalsListController implements SubController {
 		if(requestAnimalType == null || requestAnimalType.isEmpty()) {
 			requestAnimalType = "all";
 		}
+		req.setAttribute("requestAnimalType", requestAnimalType);
 		
 		Service service = Service.getInstance();
 		int totalAnimalsListCnt = service.getTotalAnimalsListCnt(requestAnimalType);
