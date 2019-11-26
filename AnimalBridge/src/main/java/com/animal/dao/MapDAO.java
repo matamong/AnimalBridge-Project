@@ -57,12 +57,18 @@ public class MapDAO {
 			try {
 				if (rs != null)
 					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
 				if (pstmt != null)
 					pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
 				if (conn != null)
 					conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e2) {
+				e2.printStackTrace();
 			}
 		}
 		return list;
@@ -147,4 +153,47 @@ public class MapDAO {
 		}
 		return result;
 	}
+	
+	public ArrayList<MapVO> searchAddress(String mapAddress){
+		ArrayList<MapVO> list = new ArrayList<MapVO>();
+		
+		String sql = "select * from map where map_address like ?";
+		try {
+			conn = DBCP.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mapAddress);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MapVO vo = new MapVO();
+				vo.setMap_address(rs.getString("map_address"));
+				vo.setTitle(rs.getString("title"));
+				vo.setSpecial(rs.getString("special"));
+				vo.setMember_nickname(rs.getString("member_nickname"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 }
