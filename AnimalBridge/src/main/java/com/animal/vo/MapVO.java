@@ -24,7 +24,7 @@ public class MapVO {
 		return member_nickname;
 	}
 
-	public void setMember_nickname(String member_nicknamel) {
+	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
 	}
 
