@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="map.css">
+    <link rel="stylesheet" type="text/css" href="/AnimalBridge/css/map/map.css">
     <title>Animal Bridge Map</title>
 </head>
 
@@ -16,14 +16,15 @@
     <p><em>지도를 클릭해주세요!</em></p>
     <p id="result"></p>
     <form action="SaveMap.do" method="get">
-        경도 <input type="text" name="x" id="x" readonly><br>
-        위도 <input type="text" name="y" id="y" readonly><br>
-        종류 <input type="text" name="title" id="title"><br>
-       특징 <input type="text" name="special" id="special"> <br>
-        주소 <input type="text" name="address" id="address" readonly><br>
-        <input type="submit">
+      <input type="hidden" name="x" id="x">
+      <input type="hidden" name="y" id="y" >
+      <input type="hidden" name="address" id="address"><br>
+           동물종류 <input type="text" name="title" id="title" placeholder="동물의 종류를 입력해주세요. e.g)고양이" style="width:400px; height:25px;"><br>
+           특징 <input type="text" name="special" id="special" placeholder="동물의 특징을 입력해주세요. e.g) '나비'라는 이름표를 하고있음" style="width:400px; height:25px;"> <br>
+      <input type="submit" value="신고하기">
     </form>
 	
+	<script type="text/javascript" src="/AnimalBridge/webapp/js/kakaoMap.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77&libraries=services,clusterer,drawing"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77"></script>
@@ -124,7 +125,8 @@
 
 
                     var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-                    message += '경도는 ' + latlng.getLng() + ' 입니다';
+                    message += '경도는 ' + latlng.getLng() + ' 입니다. <br>'
+                    			+'주소는 ' + document.getElementById("addressInfo").innerHTML + '입니다.';;
 
                     var x = document.getElementById("x");
                     x.value = latlng.getLng();
