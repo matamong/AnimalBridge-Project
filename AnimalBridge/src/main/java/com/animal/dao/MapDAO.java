@@ -16,8 +16,8 @@ public class MapDAO {
 	private static final MapDAO mapDao;
 
 	private Connection conn;
-	private PreparedStatement preStatement;
-	private ResultSet resultSet;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
 
 	static {
 		mapDao = new MapDAO();
@@ -31,9 +31,6 @@ public class MapDAO {
 	}
 
 	public ArrayList<MapVO> mapSelectAll() {
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		ArrayList<MapVO> list = new ArrayList<MapVO>();
 
@@ -72,9 +69,6 @@ public class MapDAO {
 	}
 	
 	public String mapSelectAllJson() {
-		conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		JSONArray jsonArr = new JSONArray();
 
@@ -122,8 +116,6 @@ public class MapDAO {
 	public int mapInsert(MapVO vo) {
 		int result = 0;
 		String sql = "INSERT INTO MAP VALUES(?,?,?,?,?,?)";
-		conn = null;
-		PreparedStatement pstmt = null;
 		
 		try {
 			conn = DBCP.getConnection();
