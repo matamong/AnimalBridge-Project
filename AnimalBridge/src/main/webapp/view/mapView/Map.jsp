@@ -15,7 +15,7 @@
     <div id="map" style="width:100%; height:350px;"></div>
     <p><em>지도를 클릭해주세요!</em></p>
     <p id="result"></p>
-    <form action="SaveMap.do" method="get">
+    <form action="SaveMap.do" method="post">
       <input type="hidden" name="x" id="x">
       <input type="hidden" name="y" id="y" >
       <input type="hidden" name="address" id="address"><br>
@@ -23,14 +23,69 @@
            특징 <input type="text" name="special" id="special" placeholder="동물의 특징을 입력해주세요. e.g) '나비'라는 이름표를 하고있음" style="width:400px; height:25px;"> <br>
       <input type="submit" value="신고하기">
     </form>
+    
+    <div class="mapBoard_container">
+    	<input class="form-control" id="mapAddress" onkeyup="searchAddrFunction()" type="text" size="20">
+    	<button class="btn" type="button" onclick="searchAddrFunction();">검색</button>
+    </div>
+    <table class="table" style="text-align: center; border: 1px solid #dddddd">
+    	<thead>
+    		<tr>
+    			<th style="background-color: #fafafa; text-align: center;">주소</th>
+    			<th style="background-color: #fafafa; text-align: center;">종류</th>
+    			<th style="background-color: #fafafa; text-align: center;">특징</th>
+    			<th style="background-color: #fafafa; text-align: center;">닉네임</th>
+    		</tr>
+    	</thead>
+    	<tbody id="ajaxTable">
+    		<tr>
+    			<td>부산광역시 ㅇㅇㅇ</td>
+    			<td>강아지</td>
+    			<td>파란색 목줄을 하고있음</td>
+    			<td>aa(닉네임)</td>
+    		</tr>
+    	</tbody>
+    </table>
+    
 	
-	<script type="text/javascript" src="/AnimalBridge/webapp/js/kakaoMap.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77&libraries=services,clusterer,drawing"></script>
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=34d8d65e2aab71c5883a60b3c3d28c77"></script>
         
 
     <script>
+    //ajax
+    var request = new XMLHttpRequest();
+    function searchAddrFunction(){
+    	request.open("Post", "./SearchAddress.do?mapAddress=" 
+    					+ encodeURIComponent(document.getElementById("mapAddress").value), true);
+    	request.onreadystatechange = searchProcess;  //연결이 되면 searchProcess 함수를 사용
+    	request.send(null);
+    }
+    function searchProcess(){
+    	var table = document.getElementById("ajaxTable");
+    	table.innerHTML = "";
+    	if(request.readyState == 4 && request.status == 200){ //성공적으로 통신이 성공한 경우
+    		var object = eval('(' + request.responseText + ')'); //받은 json을 object라는 변수에 넣기
+    		var result = object.result;
+    		
+    		for(var i=0; i<result.length; i++){
+    			var row = table.insertRow(0);				//row를 i로 돌고
+    			console.log("result["+i+"].value : "+result[i].value);
+    			for(var j=0; j<result[i].length; j++){
+    				var cell = row.insertCell(j);			//row 안에서 cell형태로 한번 더 j를 돈다.
+    				cell.innerHTML = result[i][j].value;
+    				console.log("result["+i+"]["+j+"].value : "+result[i][j].value);
+    			}
+    		}
+    	}
+    	window.onload = function(){  //아무것도 입력 안해도 결과가 나오게
+    		searchAddrFunction();
+    	}
+    }
+    
+    
+    //kakaoMap
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표

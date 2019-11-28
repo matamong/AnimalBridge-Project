@@ -14,6 +14,7 @@ import com.animal.controller.happyBoard.HappyBoardController;
 import com.animal.controller.happyBoard.HappyBoardViewController;
 import com.animal.controller.happyBoard.HappyBoardWriterController;
 import com.animal.controller.map.MapSaveController;
+import com.animal.controller.map.MapSearchController;
 import com.animal.controller.map.MapShowController;
 import com.animal.controller.member.MemberJoinController;
 import com.animal.controller.member.MemberLeaveController;
@@ -35,6 +36,7 @@ public class ContextListener implements ServletContextListener {
 	// Map table
 		controllers.put("/view/mapView/Map.do", new MapShowController());
 		controllers.put("/view/mapView/SaveMap.do", new MapSaveController());
+		controllers.put("/view/mapView/SearchAddress.do", new MapSearchController());
 		
 	// HappyBoard table
 		controllers.put("/view/happyBoardView/happyBoard.do", new HappyBoardController());

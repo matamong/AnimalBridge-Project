@@ -32,4 +32,8 @@ public class MapService {
 	public int saveAll(MapVO vo) {
 		return mapDao.mapInsert(vo);
 	}
+	
+	public ArrayList<MapVO> searchAddress(String mapAddress){
+		return mapDao.searchAddress(mapAddress);
+	}
 }

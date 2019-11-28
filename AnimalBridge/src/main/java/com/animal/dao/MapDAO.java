@@ -161,7 +161,7 @@ public class MapDAO {
 		try {
 			conn = DBCP.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mapAddress);
+			pstmt.setString(1, "%" + mapAddress + "%");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
