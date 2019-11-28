@@ -23,7 +23,6 @@ public class MapSaveController implements SubController{
 
 		HttpSession session = req.getSession();
 		String member_nickName = (String)session.getAttribute("memberLogInNickName");
-		System.out.println(member_nickName);
 
 		if(member_nickName != null && member_nickName != "") {
 			
