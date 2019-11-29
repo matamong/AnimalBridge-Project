@@ -33,7 +33,7 @@
         body{
             width: 100%;
             height: 100%;
-            background-image: url(/AnimalBridge/view/mainView/black.jpg);
+            background-image: url(/AnimalBridge/view/mainView/white.jpg);
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -221,7 +221,8 @@
             <div class="person" id="person2" onclick="location.href='/AnimalBridge/view/animalsView/animalsList.do'">
                      <div class="parson_menuO">입양예약</div>
                      <div class="person_img"><img src="/AnimalBridge/view/mainView/reservationIcon.png"></div>
-                     <div class="person_menuI">입양예약</div>
+                     <div class="person_menuI" 
+                     onclick="location.href='/AnimalBridge/view/reservationView/rev_vow.jsp'">입양예약</div>
             </div>
             <div class="person" id="person3">
                     <div class="parson_menuO">자원봉사</div>
