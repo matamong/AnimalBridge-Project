@@ -14,6 +14,9 @@
     <title>Animal Bridge Map</title>
     
     <style>
+    body{
+    
+    }
 * {
 	padding: 0;
 	margin: 0;
@@ -29,7 +32,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	opacity: 0.5;
-	z-index: -10;
 }
 
 .box{
@@ -46,6 +48,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index:2;
 }
 
 #wrap2,#wrap3 {
@@ -65,11 +68,14 @@
 	font-size: 30px;
 	top: 0;
 	left: 0px;
+	
+	
 }
 
 #sideBar ul {
 	list-style: none;
 	color: white;
+	z-index: 3;
 }
 
 #sideBar ul li {
