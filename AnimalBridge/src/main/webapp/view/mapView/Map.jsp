@@ -164,23 +164,29 @@
 	display: block;
 	width: 98%;
 	border-collapse: collapse;
+	border-radius: 7px;
+	border-spacing: 5px 10px;
+}
+.thead{
+	width: 100%;
 	border-radius: 5px;
 }
-
 #ajaxTable {
 	background-color: #fbfaf6;
 	color: grey;
-	width:98%;
+	width:100%;
 }
 
 .table th {
 	background-color: #71573e;
 	text-align: center;
 	color: white;
+	padding: 1%;
 }
 
 .table td {
 	border-top: 0;
+	padding: 10px;
 }
 
 .table tbody {
@@ -210,7 +216,8 @@
 }
 
 .table td:last-child {
-	width: calc(100px - 19px);
+	/* width: calc(100px - 19px); */
+	width: 200px;
 	border: 0.5px solid #e8e4db;
 }
 
