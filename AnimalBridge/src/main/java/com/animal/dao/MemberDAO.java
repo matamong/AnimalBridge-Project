@@ -106,4 +106,53 @@ public class MemberDAO {
 		
 		return result;
 	}
+
+	
+	//2019.12.01 박보금 추가
+	public int checkEdu(String nick_name) {
+		int result = 0;
+		String eduResult;
+		try {
+			String sql = "SELECT edu_state FROM ANIMAL_MEMBER WHERE NICK_NAME=?";
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, nick_name);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				eduResult = resultSet.getString(1);
+				if(eduResult.equals("YES")) {
+					result = 1;
+				}
+			}
+		} catch(SQLException e) {
+			System.out.println("MemberDAO - checkEdu() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		
+		return result;
+	}
+
+	public String getPhone(String nick_name) {
+		String result = null;
+		try {
+			String sql = "SELECT phone FROM ANIMAL_MEMBER WHERE NICK_NAME=?";
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, nick_name);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = resultSet.getString(1);
+			}
+		} catch(SQLException e) {
+			System.out.println("MemberDAO - checkEdu() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		return result;
+	}
 }

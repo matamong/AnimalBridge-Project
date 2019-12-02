@@ -57,6 +57,16 @@ public class Service {
 		return memberDAO.memberLeave(memberLogIn, password);
 	}
 	
+	//2019.12.01 박보금 추가
+	public int checkEdu(String nick_name) {
+		return memberDAO.checkEdu(nick_name);	
+	}
+	public String getPhone(String nick_name) {
+		return memberDAO.getPhone(nick_name);	
+	}
+	
+	
+	
 	
 	// 헤피 게시판 - 김영우
 	public int happyBoardWrite(HappyBoardVO vo) {
@@ -154,5 +164,9 @@ public class Service {
 	//예약게시판 - 박보금
 	public ArrayList<ReservationVO> reservationCheckAll(int year, int month, int lastday){
 		return revDao.reservationCheckAll(year, month, lastday);
+	}
+
+	public int reservationInsert(String revDate, String revTime, int animalIdx, int centerIdx, String nick_name, String phone) {
+		return revDao.reservationInsert(revDate, revTime, animalIdx, centerIdx, nick_name, phone);
 	}
 }

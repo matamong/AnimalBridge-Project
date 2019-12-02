@@ -15,6 +15,11 @@
             background-repeat: no-repeat;
             background-size: cover;
     }
+    a{
+    	text-decoration: none;
+    	color: black;
+    	
+    }
 	td{
         width:100px;
         height: 80px;
@@ -25,12 +30,18 @@
         height: 30px;
         text-align: center;
     }
-    td:nth-child(1){
+    td:nth-child(1) a{
         color: red;
     }
-    td:nth-child(7){
+    td:nth-child(7) a{
         color: blue;
     }
+    
+/*     .seletTime{
+    width:500px;
+    height: 300px;
+    border: 1px solid black;
+    } */
 </style>
 </head>
 <body>
@@ -69,26 +80,16 @@
 		</c:forEach> 
 	</c:if>	
 	<c:forEach var="i" begin="1" end="${lastday}" step="1">
-		<td>${i}
-	 	<c:forEach var="list" items = "${listAll}"> 
-			<c:if test="${i < 10}">
-	 			<%-- <c:set var = "i" value = "0+${i}"/> --%>
-	 		</c:if>
-		
-	 	</c:forEach>
+		<td><a href="rev_insert.do?centerIdx=${centerIdx}&animalIdx=${animalIdx}&year=${year}&month=${month}&day=${i}">
+		${i}</a>
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	<%--<c:forEach var="list" items = "${listAll}"> 
+ 			<c:if test="${i == list.}">
+	 			<c:set var = "i" value = "0+${i}"/>
+	 		</c:if> 
+	 	</c:forEach>--%>
+	 	
 		</td>
  		<c:if test="${((i-(1-week)) % 7) == 0}">
  			<tr></tr>
@@ -102,10 +103,12 @@
 	</tr>
 </table> 
 
-
-
-
-
+<!-- <div class="seletTime">
+	<input type="checkbox" name="time1" value="10:00~12:00" >
+	<input type="checkbox" name="time2" value="13:00~15:00" >
+	<input type="checkbox" name="time3" value="14:00~18:00" >
+</form>
+</div> -->
 
 <script>
 
