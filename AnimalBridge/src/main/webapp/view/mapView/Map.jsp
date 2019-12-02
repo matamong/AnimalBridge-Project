@@ -294,15 +294,15 @@ form{
   	  	<div id="register_wrap">
   	  		<div id="showAddr">
   	  			<p style="width:100%; text-align: center;">신고할 곳을 지도 상에서 클릭해주세요</p>
-   	 			<p id="result" style="text-align: center; font-size: xx-large ;"></p>
+   	 			<p id="result" style="text-align: center; font-size: xx-large; color:#e2574c;"></p>
   	  		</div>
     		<div class="form_wrap" style="width: 70%; margin: 0 auto;">
     			<form action="SaveMap.do" method="post">
     				<input type="hidden" name="x" id="x">
     				<input type="hidden" name="y" id="y" >
      				<input type="hidden" name="address" id="address"><br>
-     				<span>동물종류 &nbsp;&nbsp;</span><input type="text" name="title" id="title" placeholder="  동물의 종류를 입력해주세요. e.g)고양이(치즈)" style="width:400px; height:25px;border-radius: 5px;"><br>
-     				<span>특징 &nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="special" id="special" placeholder="  동물의 특징을 입력해주세요. e.g) '나비'라는 이름표를 하고있음" style="width:400px; height:25px;border-radius: 5px;"> <br>
+     				<span>동물종류 &nbsp;&nbsp;</span><input type="text" name="title" id="title" placeholder="  동물의 종류를 입력해주세요. e.g)고양이(치즈)" style="width:400px; height:50px;border-radius: 5px; font-size:0.6em"><br>
+     				<span>특징 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" name="special" id="special" placeholder="  동물의 특징을 입력해주세요. e.g) '나비'라는 이름표를 하고있음" style="width:400px; height:50px; font-size:0.6em;border-radius: 5px;"> <br>
       				<input id="form_btn" type="submit" value="신고하기" style="margin:2%; width:200px; font-family:'Jua', sans-serif; font-size:1em;">
     			</form>
     		</div>
@@ -314,7 +314,7 @@ form{
     	<div class="subject">신고 된 친구들</div>
     	<div id="mapBoard_wrap">
     		<div class="mapBoard_container">
-    			<input class="form-control" id="mapAddress" onkeyup="searchAddrFunction()" type="text" style="width:400px; height:25px; border-radius: 5px;">
+    			<input class="form-control" id="mapAddress" onkeyup="searchAddrFunction()" type="text" style="width:400px; height:35px; font-size:0.5em; border-radius: 5px;">
     			<button class="btn" type="button" onclick="searchAddrFunction();" style=" font-family:'Jua', sans-serif; font-size:0.8em;">검색</button>
     		</div>
     		<table class="table">
