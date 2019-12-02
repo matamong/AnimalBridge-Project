@@ -43,7 +43,7 @@
         }
 
 #wrap1 {
-	width: 20%;
+	width: 18%;
 	height: 100%;
 	position: fixed;
 	top: 0;
@@ -185,7 +185,7 @@
 
 .table tbody {
 	display: block;
-	height: 40%;
+	height: 500px;
 	overflow: auto;
 }
 
@@ -485,8 +485,7 @@ form{
         }
 		
         //scroll
-        $(document).ready(function(){
-    
+       /*  $(document).ready(function(){
     
    		 var elm=".box";
    		 $(elm).each(function(index){
@@ -513,8 +512,6 @@ form{
       					  if($(elmSelecter).next() != undefined){
             
  						moveTop=$(elmSelecter).next().offset().top;
-            
-            
       				  }
     			}
     
@@ -527,7 +524,7 @@ $("html, body").stop().animate({
 });
         
     })
-});
+}); */
 		
         
         //유효성 검사
