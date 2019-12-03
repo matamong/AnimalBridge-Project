@@ -21,7 +21,7 @@ public class Rev_insertController implements SubController{
 		
 		
 		String revDate = req.getParameter("year")+"-"+req.getParameter("month")+"-"+req.getParameter("day");
-		String revTime = "10:00~12:00"; /* String revTime = req.getParameter("revTime"); */
+		String revTime = req.getParameter("revTime");
 		int animalIdx = Integer.parseInt(req.getParameter("animalIdx"));
 		int centerIdx = Integer.parseInt(req.getParameter("centerIdx"));
 		String nick_name = (String)session.getAttribute("memberLogInNickName");
