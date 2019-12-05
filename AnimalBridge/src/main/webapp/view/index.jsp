@@ -184,8 +184,8 @@
         <ul>
         	<c:choose>
         		<c:when test="${empty memberLogInNickName}">
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogIn.jsp'">로그인</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.jsp'">회원가입</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogInForm.do'">로그인</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoinForm.do'">회원가입</li>
         		</c:when>
         		
         		<c:otherwise>
@@ -198,9 +198,9 @@
         				<li onclick="location.href='#'">동물관리</li>
         			</c:if>
         			
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.jsp'">마이페이지</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberMypageForm.do'">마이페이지</li>
         			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogOut.do'">로그아웃</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeave.jsp'">탈퇴</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeaveForm.do'">탈퇴</li>
         		</c:otherwise>
         	</c:choose>
         	

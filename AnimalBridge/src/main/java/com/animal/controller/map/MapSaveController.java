@@ -51,7 +51,7 @@ public class MapSaveController implements SubController{
 				resp.sendRedirect("/AnimalBridge/view/mapView/MapFalse.jsp");
 			}
 		}else if(member_nickName == null) {
-			resp.sendRedirect("/AnimalBridge/view/memberView/memberLogIn.jsp");
+			resp.sendRedirect("/AnimalBridge/view/memberView/memberLogInForm.do");
 		}else {
 			resp.sendRedirect("/AnimalBridge/view/mapView/MapFalse.jsp");
 		}

@@ -16,10 +16,14 @@ import com.animal.controller.happyBoard.HappyBoardWriterController;
 import com.animal.controller.map.MapSaveController;
 import com.animal.controller.map.MapSearchController;
 import com.animal.controller.map.MapShowController;
+import com.animal.controller.member.MemberJoinFormController;
 import com.animal.controller.member.MemberJoinController;
 import com.animal.controller.member.MemberLeaveController;
+import com.animal.controller.member.MemberLeaveFormController;
 import com.animal.controller.member.MemberLogInController;
+import com.animal.controller.member.MemberLogInFormController;
 import com.animal.controller.member.MemberLogOutController;
+import com.animal.controller.member.MemberMyPageFormController;
 import com.animal.controller.reservation.Rev_vowController;
 
 
@@ -33,6 +37,12 @@ public class ContextListener implements ServletContextListener {
 		controllers.put("/view/memberView/memberLogIn.do", new MemberLogInController());
 		controllers.put("/view/memberView/memberLogOut.do", new MemberLogOutController());
 		controllers.put("/view/memberView/memberLeave.do", new MemberLeaveController());
+		
+		controllers.put("/view/memberView/memberLogInForm.do", new MemberLogInFormController());
+		controllers.put("/view/memberView/memberJoinForm.do", new MemberJoinFormController());
+		controllers.put("/view/memberView/memberLeaveForm.do", new MemberLeaveFormController());
+		
+		controllers.put("/view/memberView/memberMypageForm.do", new MemberMyPageFormController());
 		
 	// Map table
 		controllers.put("/view/mapView/Map.do", new MapShowController());
@@ -51,6 +61,8 @@ public class ContextListener implements ServletContextListener {
 
 	// Rev
 		controllers.put("/view/reservationView/rev_vow.do", new Rev_vowController());
+		
+	
 		
 		event.getServletContext().setAttribute("controllers", controllers);
 	}
