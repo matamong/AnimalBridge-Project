@@ -8,12 +8,14 @@ import com.animal.controller.SubController;
 import com.animal.service.Service;
 import com.animal.vo.MemberVO;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class MemberLogInController implements SubController {
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String path = "/view/memberView/memberLogInResult.jsp";
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String path = "/view/index.jsp";
 		String nickName = req.getParameter("nickName");
 		String password = req.getParameter("password");
 		
@@ -21,8 +23,7 @@ public class MemberLogInController implements SubController {
 		MemberVO memberLogIn = service.memberLogIn(nickName, password);
 		
 		if(memberLogIn == null) {
-			req.setAttribute("error", "Nick Name 또는 비밀번호가 틀렸습니다.");
-			
+			resp.sendRedirect("/AnimalBridge/view/memberView/memberLogInFail.jsp");
 		} else {
 			HttpSession session = req.getSession();
 			session.setAttribute("memberLogInNickName", memberLogIn.getNickName());
