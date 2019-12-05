@@ -9,7 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dancing+Script|Pacifico|Satisfy&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Dancing+Script|Pacifico|Satisfy&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+	    
+     
     <!-- <link rel="stylesheet" type="text/css" href="/AnimalBridge/css/map/map.css"> -->
     <title>Animal Bridge Map</title>
     
@@ -51,12 +54,36 @@
 	z-index:2;
 }
 
-#wrap2,#wrap3 {
+#wrap3 {
 	width: 80%;
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 20%;
+}
+
+#wrap2 {
+	width: 70%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 20%;
+}
+
+hr{
+	width: 80%;
+	border: 0;
+	height: 2px;
+	margin: 0 auto;
+	margin-top: -40px;
+	background-color: #71573e;
+}
+
+.wrapBackground{
+	width: 100%;
+	background-color: rgba(255, 255, 255, .5);
+	padding-top: 30px;
+	margin-top: 20px;
 }
 
 #sideBar {
@@ -97,13 +124,23 @@
 #map_wrap {
 	margin: 2%;
 }
-   .subject{
-     	text-align: center;
-     	font-size: 3em;
-     	margin: 1%;
-     	color: #434343;
-     	font-family: 'Jua', sans-serif;
-     }
+
+.subject{
+	text-align: center;
+    font-size: 3em;
+    margin: 1%;
+    margin-top: 10px;
+    color: #71573e;
+    font-family: 'Do Hyeon', sans-serif;
+    
+    /* color: #434343; */
+	/* letter-spacing : -7px; */
+	/*     text-shadow: 2px 2px 0.1px dimgray; 
+ */     }
+ 
+ #subject_wrap{
+ 	margin-bottom: 50px;
+ }
     
 .title {
 	font-weight: bold;
@@ -287,7 +324,11 @@ form{
     	</div>
     <div class="box">
     <div id="wrap2">
-    	<div class="subject">유기동물 신고하기</div>
+    <div class="wrapBackground">
+    	<div id="subject_wrap">
+    		<div class="subject">유기동물 신고하기</div>
+    		<hr>
+    	</div>
     	<div id="map_wrap">
    			 <div id="map" style="width:100%; height:450px; margin:0; border-radius: 5px;"></div>
   	  	</div>	
@@ -306,6 +347,7 @@ form{
       				<input id="form_btn" type="submit" value="신고하기" style="margin:2%; width:200px; font-family:'Jua', sans-serif; font-size:1em;">
     			</form>
     		</div>
+    	</div>
     	</div>
     	</div>
     	</div>
