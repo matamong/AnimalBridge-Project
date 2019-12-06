@@ -24,6 +24,9 @@ import com.animal.controller.member.MemberLogInController;
 import com.animal.controller.member.MemberLogInFormController;
 import com.animal.controller.member.MemberLogOutController;
 import com.animal.controller.member.MemberMyPageFormController;
+import com.animal.controller.reservation.Rev_calendarController;
+import com.animal.controller.reservation.Rev_checkEduController;
+import com.animal.controller.reservation.Rev_insertController;
 import com.animal.controller.reservation.Rev_vowController;
 
 
@@ -59,8 +62,11 @@ public class ContextListener implements ServletContextListener {
 		controllers.put("/view/animalsView/animalsView.do", new AnimalsViewController());
 		controllers.put("/view/animalsView/animalsList.do", new AnimalsListController());
 
-	// Rev
+	// Reservation table
 		controllers.put("/view/reservationView/rev_vow.do", new Rev_vowController());
+		controllers.put("/view/reservationView/rev_checkEdu.do", new Rev_checkEduController());
+		controllers.put("/view/reservationView/rev_calendar.do", new Rev_calendarController());
+		controllers.put("/view/reservationView/rev_insert.do", new Rev_insertController());
 		
 	
 		

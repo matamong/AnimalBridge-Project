@@ -9,7 +9,6 @@ public class MemberVO {
 	private String addr;
 	private String grade;
 	
-	
 	public MemberVO() { }
 	public MemberVO(String email,
 					String name,
@@ -82,4 +81,5 @@ public class MemberVO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+	
 }
