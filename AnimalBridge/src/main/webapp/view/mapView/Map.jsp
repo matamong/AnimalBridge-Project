@@ -310,7 +310,6 @@ form{
         			<li onclick="">자원봉사</li>
         			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.do'">마이페이지</li>
         			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogOut.do'">로그아웃</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeave.do'">탈퇴</li>
         		</c:otherwise>
         	</c:choose>
             
@@ -587,5 +586,4 @@ $("html, body").stop().animate({
 });
     </script>
 </body>
-
 </html>

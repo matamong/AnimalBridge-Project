@@ -8,11 +8,13 @@ import com.animal.dao.AnimalsDAO;
 import com.animal.dao.HappyBoardDAO;
 import com.animal.dao.MemberDAO;
 import com.animal.dao.RecruitDAO;
+import com.animal.dao.ReservationDAO;
 import com.animal.dao.VoluntenDAO;
 import com.animal.vo.AnimalsVO;
 import com.animal.vo.HappyBoardVO;
 import com.animal.vo.MemberVO;
 import com.animal.vo.RecruitVO;
+import com.animal.vo.ReservationVO;
 import com.animal.vo.VoluntenVO;
 
 public class Service {
@@ -21,7 +23,8 @@ public class Service {
 	private final AnimalsDAO animalsDAO;
 	private final VoluntenDAO vDao;
 	private final RecruitDAO rDao;
-	
+	private final ReservationDAO revDao;
+
 	private static final Service service;
 	
 	static {
@@ -34,6 +37,7 @@ public class Service {
 		animalsDAO = AnimalsDAO.getInstance();
 		vDao = VoluntenDAO.getInstance();
 		rDao = RecruitDAO.getInstance();
+		revDao= ReservationDAO.getInstance();
 	}
 	
 	public static Service getInstance() {
@@ -52,6 +56,16 @@ public class Service {
 	public int memberLeave(String memberLogIn, String password) {
 		return memberDAO.memberLeave(memberLogIn, password);
 	}
+	
+	//2019.12.01 박보금 추가
+	public int checkEdu(String nick_name) {
+		return memberDAO.checkEdu(nick_name);	
+	}
+	public String getPhone(String nick_name) {
+		return memberDAO.getPhone(nick_name);	
+	}
+	
+	
 	
 	
 	// 헤피 게시판 - 김영우
@@ -145,5 +159,14 @@ public class Service {
 	
 	public int noshowUpdate(String nick_name, int noshow) {
 		return rDao.noshowUpdate(nick_name, noshow);
+	}
+	
+	//예약게시판 - 박보금
+	public ArrayList<ReservationVO> reservationCheckAll(int year, int month, int lastday){
+		return revDao.reservationCheckAll(year, month, lastday);
+	}
+
+	public int reservationInsert(String revDate, String revTime, int animalIdx, int centerIdx, String nick_name, String phone) {
+		return revDao.reservationInsert(revDate, revTime, animalIdx, centerIdx, nick_name, phone);
 	}
 }

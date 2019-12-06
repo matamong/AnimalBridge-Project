@@ -271,4 +271,3 @@ public class MapDAO {
 		return result;
 	}
 }
-
