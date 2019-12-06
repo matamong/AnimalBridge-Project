@@ -95,8 +95,6 @@ hr{
 	font-size: 30px;
 	top: 0;
 	left: 0px;
-	
-	
 }
 
 #sideBar ul {
@@ -130,7 +128,7 @@ hr{
     font-size: 3em;
     margin: 1%;
     margin-top: 10px;
-    color: #71573e;
+    color: #2e2925;
     font-family: 'Do Hyeon', sans-serif;
     
     /* color: #434343; */
@@ -293,8 +291,8 @@ form{
        	 <ul>
         	<c:choose>
         		<c:when test="${empty memberLogInNickName}">
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogIn.jsp'">로그인</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.jsp'">회원가입</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogIn.do'">로그인</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.do'">회원가입</li>
         		</c:when>
         		
         		<c:otherwise>
@@ -310,13 +308,11 @@ form{
         			<li onclick="location.href='/AnimalBridge/view/happyBoardView/happyBoard.do'">저 행복해요</li>
         			<li onclick="location.href='/AnimalBridge/view/reservationView/rev_vow.jsp'">입양예약</li>
         			<li onclick="">자원봉사</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.jsp'">마이페이지</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberJoin.do'">마이페이지</li>
         			<li onclick="location.href='/AnimalBridge/view/memberView/memberLogOut.do'">로그아웃</li>
-        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeave.jsp'">탈퇴</li>
+        			<li onclick="location.href='/AnimalBridge/view/memberView/memberLeave.do'">탈퇴</li>
         		</c:otherwise>
         	</c:choose>
-        	
-      		  	<li onclick="location.href='/AnimalBridge/view/animalsView/animalsWriter.jsp'">반려동물 등록</li>
             
        	     <li>사이트 소개</li>
       	  </ul>
@@ -324,10 +320,8 @@ form{
     	</div>
     <div class="box">
     <div id="wrap2">
-    <div class="wrapBackground">
     	<div id="subject_wrap">
     		<div class="subject">유기동물 신고하기</div>
-    		<hr>
     	</div>
     	<div id="map_wrap">
    			 <div id="map" style="width:100%; height:450px; margin:0; border-radius: 5px;"></div>
@@ -347,7 +341,6 @@ form{
       				<input id="form_btn" type="submit" value="신고하기" style="margin:2%; width:200px; font-family:'Jua', sans-serif; font-size:1em;">
     			</form>
     		</div>
-    	</div>
     	</div>
     	</div>
     	</div>
