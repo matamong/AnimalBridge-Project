@@ -134,7 +134,8 @@ public class MemberDAO {
 		
 		return result;
 	}
-
+	
+	//2019.12.01 박보금 추가
 	public String getPhone(String nick_name) {
 		String result = null;
 		try {
@@ -155,4 +156,5 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
 }

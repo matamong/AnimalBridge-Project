@@ -12,7 +12,7 @@ import com.animal.controller.AppUtil;
 import com.animal.controller.SubController;
 import com.animal.service.Service;
 
-public class Rev_check_eduController implements SubController{
+public class Rev_checkEduController implements SubController{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) 
 					throws ServletException, IOException {
@@ -28,8 +28,8 @@ public class Rev_check_eduController implements SubController{
 			
 			if(checkEdu == 1) {
 				path = "rev_calendar.do";
-			}else {
-				path = "/AnimalBridge/view/index.jsp";
+			}else{
+				path = "/view/reservationView/rev_checkEdu.jsp";
 			}
 			String centerIdx = req.getParameter("centerIdx");
 			String animalIdx = req.getParameter("animalIdx");

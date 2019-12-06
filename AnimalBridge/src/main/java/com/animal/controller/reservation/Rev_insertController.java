@@ -30,9 +30,9 @@ public class Rev_insertController implements SubController{
 		int result = service.reservationInsert(revDate, revTime, animalIdx, centerIdx, nick_name, phone);
 			
 		if(result==1) {
-			System.out.println("예약성공");
+			System.out.println("Rerservation Succeeded");
 		}else {
-			System.out.println("예약실패");
+			System.out.println("Rerservation Failed");
 		}
 		
 		AppUtil.forward(req, resp, path);
