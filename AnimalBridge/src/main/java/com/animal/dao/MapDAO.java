@@ -196,4 +196,79 @@ public class MapDAO {
 		return list;
 	}
 	
+	public ArrayList<MapVO> mapSelectUser(String nickName) {
+
+		ArrayList<MapVO> list = new ArrayList<MapVO>();
+
+		String sql = "SELECT * FROM MAP where user=?";
+
+		try {
+			conn = DBCP.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MapVO mapVO = new MapVO();
+				mapVO.setMember_nickname(rs.getString("member_nickname"));
+				mapVO.setX(rs.getString("x"));
+				mapVO.setY(rs.getString("y"));
+				mapVO.setTitle(rs.getString("title"));
+				mapVO.setSpecial(rs.getString("special"));
+				mapVO.setMap_address(rs.getString("map_address"));
+				list.add(mapVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public int mapDelete(String x, String y) {
+		int result = 0;
+		
+		String sql = "delete from map where x=?, y=?";
+		
+		try {
+			conn = DBCP.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, x);
+			pstmt.setString(2, y);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}try {
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
 }
+
