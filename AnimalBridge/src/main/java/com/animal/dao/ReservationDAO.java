@@ -72,6 +72,33 @@ public class ReservationDAO {
 			
 			return revList;
 		}
-	
-	
+
+		public int reservationInsert(String revDate, String revTime, int animalIdx, int centerIdx, String nick_name, String phone) {
+			int result = 0;
+			
+			try {
+				String sql = "INSERT INTO reservation" + 
+							 "(rev_number, rev_date, rev_time, animal_Idx, center_Idx, nick_name, phone) " +
+							 "VALUES(null, ?, ?, ?, ?, ?, ?)";
+				
+				conn = DBCP.getConnection();
+				preStatement = conn.prepareStatement(sql);
+				preStatement.setString(1, revDate);
+				preStatement.setString(2, revTime);
+				preStatement.setInt(3, animalIdx);
+				preStatement.setInt(4, centerIdx);
+				preStatement.setString(5, nick_name);
+				preStatement.setString(6, phone);
+				
+				result = preStatement.executeUpdate();
+				
+			} catch(SQLException e) {
+				System.out.println("ReservationDAO - reservationInsert() 에러 : " + e.getMessage());
+				
+			} finally {
+				DBCP.close(conn, preStatement);
+			}
+			
+			return result;
+		}
 }

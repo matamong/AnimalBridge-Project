@@ -32,6 +32,8 @@ public class FrontController extends HttpServlet {
 		String contextPath = req.getContextPath();
 		String path = uri.substring(contextPath.length());
 		
+		System.out.println(path);
+		
 		SubController subController = controllers.get(path);
 		subController.execute(req, resp);
 	}

@@ -62,7 +62,12 @@ public class Rev_calendarController implements SubController {
 		ArrayList<ReservationVO> listAll = service.reservationCheckAll(year, month, lastday);
 		req.setAttribute("listAll", listAll);
 		
-	
+		
+		String centerIdx = req.getParameter("centerIdx");
+		String animalIdx = req.getParameter("animalIdx");
+		req.setAttribute("centerIdx", centerIdx);
+		req.setAttribute("animalIdx", animalIdx);
+		
 		AppUtil.forward(req, resp, path);
 	}
 

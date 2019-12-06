@@ -26,21 +26,23 @@ public class MemberDAO {
 	}
 	
 	
-	public int memberInsert(MemberVO vo) {
+	public int memberJoin(MemberVO vo) {
 		int result = 0;
 		
 		try {
-			String sql = "INSERT INTO MEMBER" + 
-						 "(NICK_NAME, EMAIL, PASSWORD, ADDR, PHONE) " +
-						 "VALUES(?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO ANIMAL_MEMBER" + 
+						 "(EMAIL, NAME, NICK_NAME, PASSWORD, PHONE, ADDR, GRADE) " +
+						 "VALUES(?, ?, ?, ?, ?, ?, ?)";
 			
 			conn = DBCP.getConnection();
 			preStatement = conn.prepareStatement(sql);
-			preStatement.setString(1, vo.getNickName());
-			preStatement.setString(2, vo.getEmail());
-			preStatement.setString(3, vo.getPassword());
-			preStatement.setString(4, vo.getAddr());
+			preStatement.setString(1, vo.getEmail());
+			preStatement.setString(2, vo.getName());
+			preStatement.setString(3, vo.getNickName());
+			preStatement.setString(4, vo.getPassword());
 			preStatement.setString(5, vo.getPhone());
+			preStatement.setString(6, vo.getAddr());
+			preStatement.setString(7, vo.getGrade());
 			
 			result = preStatement.executeUpdate();
 			
@@ -55,11 +57,11 @@ public class MemberDAO {
 	}
 	
 	
-	public MemberVO memberSelect(String nickName, String password) {
-		MemberVO memberVO = null;
+	public MemberVO memberLogIn(String nickName, String password) {
+		MemberVO result = null;
 		
 		try {
-			String sql = "SELECT * FROM MEMBER WHERE NICK_NAME=? AND PASSWORD=?";
+			String sql = "SELECT * FROM ANIMAL_MEMBER WHERE NICK_NAME=? AND PASSWORD=?";
 			conn = DBCP.getConnection();
 			preStatement = conn.prepareStatement(sql);
 			preStatement.setString(1, nickName);
@@ -67,11 +69,9 @@ public class MemberDAO {
 			resultSet = preStatement.executeQuery();
 			
 			if(resultSet.next()) {
-				memberVO = new MemberVO(resultSet.getString("NICK_NAME"),
-										resultSet.getString("EMAIL"),
-										resultSet.getString("PASSWORD"),
-										resultSet.getString("ADDR"),
-										resultSet.getString("PHONE"));
+				result = new MemberVO();
+				result.setNickName(resultSet.getString("NICK_NAME"));
+				result.setGrade(resultSet.getString("GRADE"));
 			}
 			
 		} catch(SQLException e) {
@@ -81,18 +81,19 @@ public class MemberDAO {
 			DBCP.close(conn, preStatement, resultSet);
 		}
 		
-		return memberVO;
+		return result;
 	}
 	
 	
-	public int memberDelete(String nickName) {
+	public int memberLeave(String memberLogIn, String password) {
 		int result = 0;
 		
 		try {
-			String sql = "DELETE FROM MEMBER WHERE NICK_NAME=?";
+			String sql = "DELETE FROM ANIMAL_MEMBER WHERE NICK_NAME=? AND PASSWORD=?";
 			conn = DBCP.getConnection();
 			preStatement = conn.prepareStatement(sql);
-			preStatement.setString(1, nickName);
+			preStatement.setString(1, memberLogIn);
+			preStatement.setString(2, password);
 			
 			result = preStatement.executeUpdate();
 			
@@ -105,8 +106,55 @@ public class MemberDAO {
 		
 		return result;
 	}
+
 	
-	public void test(String test) {
+	//2019.12.01 박보금 추가
+	public int checkEdu(String nick_name) {
+		int result = 0;
+		String eduResult;
+		try {
+			String sql = "SELECT edu_state FROM ANIMAL_MEMBER WHERE NICK_NAME=?";
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, nick_name);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				eduResult = resultSet.getString(1);
+				if(eduResult.equals("YES")) {
+					result = 1;
+				}
+			}
+		} catch(SQLException e) {
+			System.out.println("MemberDAO - checkEdu() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
 		
+		return result;
 	}
+	
+	//2019.12.01 박보금 추가
+	public String getPhone(String nick_name) {
+		String result = null;
+		try {
+			String sql = "SELECT phone FROM ANIMAL_MEMBER WHERE NICK_NAME=?";
+			conn = DBCP.getConnection();
+			preStatement = conn.prepareStatement(sql);
+			preStatement.setString(1, nick_name);
+			resultSet = preStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				result = resultSet.getString(1);
+			}
+		} catch(SQLException e) {
+			System.out.println("MemberDAO - checkEdu() 에러 : " + e.getMessage());
+			
+		} finally {
+			DBCP.close(conn, preStatement, resultSet);
+		}
+		return result;
+	}
+	
 }

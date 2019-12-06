@@ -1,32 +1,29 @@
 package com.animal.vo;
 
 public class MemberVO {
-	private String nickName;
 	private String email;
+	private String name;
+	private String nickName;
 	private String password;
-	private String addr;
 	private String phone;
-	
+	private String addr;
+	private String grade;
 	
 	public MemberVO() { }
-	public MemberVO(String nickName,
-					String email,
+	public MemberVO(String email,
+					String name,
+					String nickName,
 					String password,
+					String phone,
 					String addr,
-					String phone) {
-		this.nickName = nickName;
+					String grade) {
 		this.email = email;
-		this.password = password;
-		this.addr = addr;
-		this.phone = phone;
-	}
-	
-	
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
+		this.name = name;
 		this.nickName = nickName;
+		this.password = password;
+		this.phone = phone;
+		this.addr = addr;
+		this.grade = grade;
 	}
 	
 	
@@ -35,6 +32,22 @@ public class MemberVO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	
@@ -59,6 +72,14 @@ public class MemberVO {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	
 }

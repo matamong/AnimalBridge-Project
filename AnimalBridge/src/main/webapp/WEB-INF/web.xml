@@ -8,7 +8,7 @@
 	</listener>
 	
 	
-<!-- ErrorCatcherCode500 -->	
+<!-- ErrorCatcherCode500 -->
 	<servlet>
 		<servlet-name>error500</servlet-name>
 		<servlet-class>com.animal.error.ErrorCatcherCode500</servlet-class>
